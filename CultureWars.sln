@@ -7,11 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.API.Google.Clou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.API", "src\APIs\CultureWars.API\CultureWars.API.csproj", "{8185A940-CFF8-4B8B-A34E-2F1A2915A79E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.Data.Domain", "src\Data\CultureWars.Data.Domain\CultureWars.Data.Domain.csproj", "{5DA9654B-405C-4B00-8FE0-E09148647297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Data.Domain", "src\Data\CultureWars.Data.Domain\CultureWars.Data.Domain.csproj", "{5DA9654B-405C-4B00-8FE0-E09148647297}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.Terminal", "src\Application\CultureWars.Terminal\CultureWars.Terminal.csproj", "{A187DFF4-97F4-42C0-A8AE-ACA587135B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Terminal", "src\Application\CultureWars.Terminal\CultureWars.Terminal.csproj", "{A187DFF4-97F4-42C0-A8AE-ACA587135B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.API.InternetArchive", "src\APIs\CultureWars.API.InternetArchive\CultureWars.API.InternetArchive.csproj", "{6629C47F-618C-4E88-8353-3FFCB32AFAFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.API.InternetArchive", "src\APIs\CultureWars.API.InternetArchive\CultureWars.API.InternetArchive.csproj", "{6629C47F-618C-4E88-8353-3FFCB32AFAFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Data.Export.WordPress", "src\Data\CultureWars.Data.Export.WordPress\CultureWars.Data.Export.WordPress.csproj", "{5BEAB8BE-F849-447D-BC74-2EDC8E58BD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.API.YouTube", "src\APIs\CultureWars.API.YouTube\CultureWars.API.YouTube.csproj", "{8126AD2B-9AAD-4F11-8665-EC70FBDAD6E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{6629C47F-618C-4E88-8353-3FFCB32AFAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6629C47F-618C-4E88-8353-3FFCB32AFAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6629C47F-618C-4E88-8353-3FFCB32AFAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BEAB8BE-F849-447D-BC74-2EDC8E58BD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BEAB8BE-F849-447D-BC74-2EDC8E58BD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BEAB8BE-F849-447D-BC74-2EDC8E58BD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BEAB8BE-F849-447D-BC74-2EDC8E58BD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8126AD2B-9AAD-4F11-8665-EC70FBDAD6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8126AD2B-9AAD-4F11-8665-EC70FBDAD6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8126AD2B-9AAD-4F11-8665-EC70FBDAD6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8126AD2B-9AAD-4F11-8665-EC70FBDAD6E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

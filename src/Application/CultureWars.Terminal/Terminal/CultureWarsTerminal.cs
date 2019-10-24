@@ -1,6 +1,6 @@
 ﻿using Ccr.Std.Core.Extensions;
 using System;
-using CultureWars.API.InternetArchive.API.InternetArchive;
+using CultureWars.API.InternetArchive;
 using CultureWars.API.InternetArchive.Domain;
 using CultureWars.API.InternetArchive.Query;
 
@@ -38,20 +38,14 @@ namespace CultureWars.Terminal
 							IAQueryFields.Title)
 						.WithRows(5000)
 						.WithOutputKind(APIDataOutputKind.JSON)
-						.WithCallback("callback")
+						.WithCallback("callback") 
 						.WithShouldSave(true);
 
 					foreach (var archiveItem in archiveApi.Query(queryBuilder))
 					{
 						Console.WriteLine($"Archive Item - Identifier: {archiveItem.Identifier}");
-
 						foreach (var file in archiveItem.GetItemFiles())
 						{
-							//if (file.FilePathUrl.EndsWith(".mp4"))
-							//{
-							//Console.WriteLine(
-							//	$"<iframe width=\"360\" height=\"240\" src=\"{file.FilePathUrl}\" frameborder=\"0\" allowfullscreen></iframe>");
-
 							Console.WriteLine(
 								$"{archiveItem.Identifier.Quote()}," +
 								$"{file.IndexWithinItem}," +

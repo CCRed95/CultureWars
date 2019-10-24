@@ -12,13 +12,12 @@ using CultureWars.API.InternetArchive.Query;
 using CultureWars.API.Web;
 using Newtonsoft.Json;
 
-namespace CultureWars.API.InternetArchive.API.InternetArchive
+namespace CultureWars.API.InternetArchive
 {
 	public class InternetArchiveAPI
 		: APIBase<
 			InternetArchiveItem,
 			InternetArchiveQueryBuilder>
-
 	{
 		private const string _domain = "https://www.archive.org/";
 		private const string _uploadDomain = "http://s3.us.archive.org/";
@@ -97,7 +96,17 @@ namespace CultureWars.API.InternetArchive.API.InternetArchive
 					request.Headers.TryAddWithoutValidation("x-amz-auto-make-bucket", "1");
 					request.Headers.TryAddWithoutValidation("x-archive-meta01-collection", "opensource_movies");
 					request.Headers.TryAddWithoutValidation("x-archive-meta-mediatype", "movies");
-					request.Headers.TryAddWithoutValidation("x-archive-meta-title", "Ben plays piano.");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-sponsor", "");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-creator", "");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-title", "");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-date", "");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-year", "");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-month", "");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-description", "description");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-subject", "subject1;subject2");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-language", "eng");
+					request.Headers.TryAddWithoutValidation("x-archive-meta-licenseurl", "http://creativecommons.org/licenses/by-nc/3.0/us/");
+
 
 					request.Content = new ByteArrayContent(File.ReadAllBytes("ben-2009-05-09.avi"));
 
