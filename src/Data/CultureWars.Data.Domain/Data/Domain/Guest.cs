@@ -22,18 +22,18 @@ namespace CultureWars.Data.Domain
     public virtual ICollection<GuestAppearance> ShowAppearances { get; set; }
 
 
-    [UsedImplicitly]
-    public Guest()
-    {
-      ShowAppearances = new HashSet<GuestAppearance>();
-    }
+		[UsedImplicitly]
+		public Guest()
+		{
+			ShowAppearances = new HashSet<GuestAppearance>();
+		}
 
-    public Guest(
+		public Guest(
       [NotNull] string fullName)
         : this()
     {
       FullName = fullName;
-    }
+		}
 		
     public Guest(
       [NotNull] string fullName,

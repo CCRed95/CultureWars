@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using Ccr.Std.Core.Extensions;
+﻿using Ccr.Std.Core.Extensions;
 using CultureWars.API.Common.Query;
 using CultureWars.API.Infrastructure;
 using CultureWars.API.InternetArchive.Domain;
+using System;
+using System.Linq;
+using System.Text;
 
 namespace CultureWars.API.InternetArchive.Query
 {
@@ -211,7 +211,7 @@ namespace CultureWars.API.InternetArchive.Query
 				sb.Append(_sortField.FieldName.ToLower());
 				sb.Append("Sorter ");
 				sb.Append(_sortDirection.Value.SortKey);
-				
+
 
 				//switch (_sortDirection)
 				//{

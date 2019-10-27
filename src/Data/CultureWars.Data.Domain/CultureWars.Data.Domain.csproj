@@ -9,4 +9,8 @@
     <PackageReference Include="Ccr.Std.Core" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CultureWars.Core\CultureWars.Core.csproj" />
+  </ItemGroup>
+
 </Project>

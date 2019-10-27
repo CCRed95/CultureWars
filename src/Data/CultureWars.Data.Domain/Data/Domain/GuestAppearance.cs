@@ -24,6 +24,7 @@ namespace CultureWars.Data.Domain
 			[NotNull] ShowMediaEntry showMediaEntry) 
 		    : this()
 		{
+			
       guest.IsNotNull(nameof(guest));
       showMediaEntry.IsNotNull(nameof(showMediaEntry));
 

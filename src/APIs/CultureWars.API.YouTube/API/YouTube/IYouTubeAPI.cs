@@ -62,12 +62,12 @@ namespace CultureWars.API.YouTube
 		/// Searches videos using given query.
 		/// The video list is truncated at given number of pages (1 page ≤ 20 videos).
 		/// </summary>
-		Task<IReadOnlyList<Video>> SearchVideosAsync(string query, int maxPages);
+		Task<IReadOnlyList<YouTubeVideo>> SearchVideosAsync(string query, int maxPages);
 
 		/// <summary>
 		/// Searches videos using given query.
 		/// </summary>
-		Task<IReadOnlyList<Video>> SearchVideosAsync(string query);
+		Task<IReadOnlyList<YouTubeVideo>> SearchVideosAsync(string query);
 
 		#endregion
 
@@ -81,18 +81,18 @@ namespace CultureWars.API.YouTube
 		/// <summary>
 		/// Gets channel information by ID.
 		/// </summary>
-		Task<Channel> GetChannelAsync(string channelId);
+		Task<YouTubeChannel> GetChannelAsync(string channelId);
 
 		/// <summary>
 		/// Gets videos uploaded by channel with given ID.
 		/// The video list is truncated at given number of pages (1 page ≤ 200 videos).
 		/// </summary>
-		Task<IReadOnlyList<Video>> GetChannelUploadsAsync(string channelId, int maxPages);
+		Task<IReadOnlyList<YouTubeVideo>> GetChannelUploadsAsync(string channelId, int maxPages);
 
 		/// <summary>
 		/// Gets videos uploaded by channel with given ID.
 		/// </summary>
-		Task<IReadOnlyList<Video>> GetChannelUploadsAsync(string channelId);
+		Task<IReadOnlyList<YouTubeVideo>> GetChannelUploadsAsync(string channelId);
 
 		#endregion
 

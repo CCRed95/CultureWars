@@ -1,26 +1,22 @@
 ﻿using System.Text;
 using Ccr.Std.Core.Extensions;
+using CultureWars.Core.Extensions;
 
 namespace CultureWars.Data.Domain.Complex
 {
   public abstract class Person
   {
-    protected class PersonImpl
-      : Person
-    {
-      
-    }
-
     public string FirstName { get; set; }
 
     public string MiddleName { get; set; }
 
     public string LastName { get; set; }
 
-		
+		public string AlternateName { get; set; }
 
-    //[NotMapped]
-    public string FullName
+		
+		//[NotMapped]
+		public string FullName
     {
       get
       {
@@ -52,7 +48,33 @@ namespace CultureWars.Data.Domain.Complex
       }
     }
 
-    public string AlternateName { get; set; }
-    
-  }
+
+		protected Person()
+		{
+		}
+
+		protected Person(
+	    string firstName,
+	    string middleName,
+	    string lastName)
+			: this()
+    {
+	    FirstName = firstName.EnforceNotNull(nameof(firstName));
+	    MiddleName = middleName.EnforceNotNull(nameof(middleName));
+	    LastName = lastName.EnforceNotNull(nameof(lastName));
+    }
+
+    protected Person(
+	    string firstName,
+	    string middleName,
+	    string lastName,
+	    string alternateName)
+				: this(
+					firstName,
+					middleName,
+					lastName)
+    {
+	    AlternateName = alternateName.EnforceNotNull(nameof(alternateName));
+    }
+	}
 }
