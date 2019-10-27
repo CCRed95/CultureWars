@@ -4,10 +4,15 @@ using JetBrains.Annotations;
 namespace CultureWars.Data.Export.WordPress.Domain
 {
 	/// <summary>
-	/// Status of Comments
+	///		Status of Comments
 	/// </summary>
-	public partial struct OpenStatus
+	public partial struct WordPressOpenStatus
 	{
+		/// <summary>
+		///		Indicates the Status ID.
+		/// </summary>
+		public int StatusID { get; }
+
 		/// <summary>
 		///		Indicates the Status Name.
 		/// </summary>
@@ -20,28 +25,31 @@ namespace CultureWars.Data.Export.WordPress.Domain
 		[NotNull]
 		public string StatusFriendlyName { get; }
 
-
-		private OpenStatus(
+		
+		private WordPressOpenStatus(
+			int statusID,
 			[NotNull] string statusName,
 			[NotNull] string statusFriendlyName)
 		{
+			StatusID = statusID;
 			StatusName = statusName.EnforceNotNull(nameof(statusName));
 			StatusFriendlyName = statusFriendlyName.EnforceNotNull(nameof(statusFriendlyName));
 		}
 	}
 
-	public partial struct OpenStatus
+
+	public partial struct WordPressOpenStatus
 	{
 		/// <summary>
-		///		Open OpenStatus Entity Declaration
+		///		Open WordPressOpenStatus Entity Declaration
 		/// </summary>
-		public static readonly OpenStatus Open
-			= new OpenStatus("open", "Open");
+		public static readonly WordPressOpenStatus Open
+			= new WordPressOpenStatus(1, "open", "Open");
 
 		/// <summary>
-		///		Closed OpenStatus Entity Declaration
+		///		Closed WordPressOpenStatus Entity Declaration
 		/// </summary>
-		public static readonly OpenStatus Closed
-			= new OpenStatus("closed", "Closed");
+		public static readonly WordPressOpenStatus Closed
+			= new WordPressOpenStatus(2, "closed", "Closed");
 	}
 }

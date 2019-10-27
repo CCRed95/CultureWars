@@ -61,36 +61,6 @@ namespace CultureWars.Data.Export.WordPress.Domain
 		}
 
 
-		public static XElement CreateNode(
-			string elementName, 
-			string value)
-		{
-			return new XElement(elementName, value);
-		}
-
-		public static XElement CreateNode(
-			string ns,
-			string elementName,
-			string value)
-		{
-			return new XElement($"{ns}:{elementName}" , value);
-		}
-
-		public static XElement CreateNode(
-			string elementName,
-			XCData value)
-		{
-			return new XElement(elementName, value);
-		}
-
-		public static XElement CreateNode(
-			string ns,
-			string elementName,
-			XCData value)
-		{
-			return new XElement($"{ns}:{elementName}", value);
-		}
-
 		public static WordPressAttachmentItem FromXElement(
 			XElement attachmentItem)
 		{

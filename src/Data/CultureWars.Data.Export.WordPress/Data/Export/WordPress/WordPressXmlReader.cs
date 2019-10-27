@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using JetBrains.Annotations;
 
 namespace CultureWars.Data.Export.WordPress
@@ -14,8 +15,9 @@ namespace CultureWars.Data.Export.WordPress
 
 		public WordPressXmlReader BeginWriteItem()
 		{
-			_xmlTextWriter.WriteStartElement("item");
-			return new WordPressItemXmlWriter(this);
+			throw new NotImplementedException();
+			//_xmlTextWriter.WriteStartElement("item");
+			//return new WordPressItemXmlWriter(this);
 		}
 	}
 }

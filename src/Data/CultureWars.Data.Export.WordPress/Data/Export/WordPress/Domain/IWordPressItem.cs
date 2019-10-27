@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 using CultureWars.Data.Domain;
 
 namespace CultureWars.Data.Export.WordPress.Domain
@@ -22,5 +23,8 @@ namespace CultureWars.Data.Export.WordPress.Domain
 		string PostContent { get; }
 
 		string PostExcerpt { get; }
+
+
+		XElement ToXElement();
 	}
 }
