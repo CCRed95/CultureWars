@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Data.Export.Wor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.API.YouTube", "src\APIs\CultureWars.API.YouTube\CultureWars.API.YouTube.csproj", "{8126AD2B-9AAD-4F11-8665-EC70FBDAD6E1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{86B0D982-9520-460C-A8A8-1EB9721F224E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{86B0D982-9520-460C-A8A8-1EB9721F224E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.Core", "src\Core\CultureWars.Core\CultureWars.Core.csproj", "{3E2946E2-0B74-47F5-ABAF-56078F2E4163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Core", "src\Core\CultureWars.Core\CultureWars.Core.csproj", "{3E2946E2-0B74-47F5-ABAF-56078F2E4163}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.Data.Export.WordPress.Tests", "src\Tests\CultureWars.Data.Export.WordPress.Tests\CultureWars.Data.Export.WordPress.Tests.csproj", "{8F80055D-30D7-4D49-A712-B850125702B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,9 +61,16 @@ Global
 		{3E2946E2-0B74-47F5-ABAF-56078F2E4163}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E2946E2-0B74-47F5-ABAF-56078F2E4163}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E2946E2-0B74-47F5-ABAF-56078F2E4163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F80055D-30D7-4D49-A712-B850125702B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F80055D-30D7-4D49-A712-B850125702B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F80055D-30D7-4D49-A712-B850125702B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F80055D-30D7-4D49-A712-B850125702B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F80055D-30D7-4D49-A712-B850125702B0} = {86B0D982-9520-460C-A8A8-1EB9721F224E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA85D656-8DAC-4651-AA54-C7D23BDF78A8}

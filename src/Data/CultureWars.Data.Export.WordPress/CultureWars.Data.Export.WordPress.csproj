@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\CultureWars.Core\CultureWars.Core.csproj" />
     <ProjectReference Include="..\CultureWars.Data.Domain\CultureWars.Data.Domain.csproj" />
   </ItemGroup>

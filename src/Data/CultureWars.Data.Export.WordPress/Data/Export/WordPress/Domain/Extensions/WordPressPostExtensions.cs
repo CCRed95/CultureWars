@@ -1,11 +1,9 @@
-﻿using System.Xml;
-
-namespace CultureWars.Data.Export.WordPress.Domain.Extensions
+﻿namespace CultureWars.Data.Export.WordPress.Domain.Extensions
 {
 	public static class WordPressPostExtensions
 	{
 		public static void WritePostTo(
-			this WordPressPost @this,
+			this WordPressPostItem @this,
 			WordPressXmlWriter writer)
 		{
 			writer
@@ -26,7 +24,7 @@ namespace CultureWars.Data.Export.WordPress.Domain.Extensions
 
 		public static void WritePost(
 			this WordPressXmlWriter @this,
-			WordPressPost post)
+			WordPressPostItem post)
 		{
 			@this
 				.BeginWriteItem()

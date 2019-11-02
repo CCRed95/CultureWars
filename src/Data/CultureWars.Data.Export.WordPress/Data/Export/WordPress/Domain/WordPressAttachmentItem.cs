@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Xml.Linq;
 using CultureWars.Core.Extensions;
 using CultureWars.Data.Domain;
+using CultureWars.Data.Export.WordPress.DynamicBuilder;
 
 namespace CultureWars.Data.Export.WordPress.Domain
 {
@@ -115,7 +117,40 @@ namespace CultureWars.Data.Export.WordPress.Domain
 		public XElement ToXElement()
 		{
 			var item = new XElement("item");
-			
+
+		}
+	}
+}
+
+//dynamic xml = new Xml();
+//xml.item(
+//	Xml.Fragment(
+//		t =>
+//		{
+//			xml.@wp_attachment_url(AttachmentUrl);
+//			xml.link(PostLink);
+//			xml.title(PostTitle);
+
+//			xml.@wp_post_name(PostName);
+//			xml.@wp_post_type(PostType);
+//			xml.@wp_post_id(PostID);
+//			xml.@wp_status(Status);
+
+//			xml.@content_encoded(new XCData(PostContent));
+//			xml.@excerpt_encoded(new XCData(PostExcerpt));
+
+//			var pubDateStr = PostDateTime.ToString("ddd, dd MMM yyyy HH:mm:ss") + " +0000";
+//			var postDateStr = PostDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+//			var gmtPostDateStr = PostDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+
+//			xml.pubDate(pubDateStr);
+//			xml.@wp_post_date(postDateStr);
+//			xml.@wp_post_date_gmt(gmtPostDateStr);
+
+//			xml.@dc_creator(Author.AuthorLogin);
+//		}));
+
+/*
 			item.Add(CreateNode("wp", "attachment_url", AttachmentUrl));
 			item.Add(CreateNode("link", PostLink));
 			item.Add(CreateNode("title", PostTitle));
@@ -128,9 +163,9 @@ namespace CultureWars.Data.Export.WordPress.Domain
 			item.Add(CreateNode("content", "encoded", new XCData(PostContent)));
 			item.Add(CreateNode("excerpt", "encoded", new XCData(PostExcerpt)));
 
-			var pubDateStr = PostDateTime.ToString("ddd, dd MMM yyyy HH:mm:ss") + " +0000";
-			var postDateStr = PostDateTime.ToString("yyyy-MM-dd HH:mm:ss");
-			var gmtPostDateStr = PostDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+			//var pubDateStr = PostDateTime.ToString("ddd, dd MMM yyyy HH:mm:ss") + " +0000";
+			//var postDateStr = PostDateTime.ToString("yyyy-MM-dd HH:mm:ss");
+			//var gmtPostDateStr = PostDateTime.ToString("yyyy-MM-dd HH:mm:ss");
 
 			item.Add(CreateNode("pubDate", pubDateStr));
 			item.Add(CreateNode("wp", "post_date", postDateStr));
@@ -138,7 +173,4 @@ namespace CultureWars.Data.Export.WordPress.Domain
 
 			item.Add(CreateNode("dc", "creator", Author.AuthorLogin));
 
-			return item;
-		}
-	}
-}
+			return item;*/
