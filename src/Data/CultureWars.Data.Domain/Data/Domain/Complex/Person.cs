@@ -5,8 +5,14 @@ using CultureWars.Core.Extensions;
 namespace CultureWars.Data.Domain.Complex
 {
   public abstract class Person
-  {
-    public string FirstName { get; set; }
+	{
+		protected class PersonImpl
+			: Person
+		{
+
+		}
+
+		public string FirstName { get; set; }
 
     public string MiddleName { get; set; }
 

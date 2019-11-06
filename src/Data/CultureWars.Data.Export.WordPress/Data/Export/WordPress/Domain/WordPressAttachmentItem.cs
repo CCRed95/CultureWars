@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Xml.Linq;
 using CultureWars.Core.Extensions;
 using CultureWars.Data.Domain;
-using CultureWars.Data.Export.WordPress.DynamicBuilder;
 
 namespace CultureWars.Data.Export.WordPress.Domain
 {
@@ -30,7 +28,11 @@ namespace CultureWars.Data.Export.WordPress.Domain
 
 		public CultureWarsAuthor Author { get; }
 
-		public DateTime PostDateTime { get; }
+		public DateTime PublicationDate { get; }
+
+		public DateTime PostDate { get; }
+
+		public DateTime PostDateGMT { get; }
 
 		public string PostContent { get; }
 
@@ -46,7 +48,9 @@ namespace CultureWars.Data.Export.WordPress.Domain
 			string attachmentUrl,
 			string status,
 			CultureWarsAuthor author,
-			DateTime postDateTime,
+			DateTime publicationDate,
+			DateTime postDate,
+			DateTime postDateGmt,
 			string postContent,
 			string postExcerpt)
 		{
@@ -57,7 +61,9 @@ namespace CultureWars.Data.Export.WordPress.Domain
 			AttachmentUrl = attachmentUrl.EnforceNotNull(nameof(attachmentUrl));
 			Status = status.EnforceNotNull(nameof(status));
 			Author = author.EnforceNotNull(nameof(author));
-			PostDateTime = postDateTime.EnforceNotNull(nameof(postDateTime));
+			PublicationDate = publicationDate.EnforceNotNull(nameof(publicationDate));
+			PostDate = postDate.EnforceNotNull(nameof(postDate));
+			PostDateGMT = postDateGmt.EnforceNotNull(nameof(postDateGmt));
 			PostContent = postContent.EnforceNotNull(nameof(postContent));
 			PostExcerpt = postExcerpt.EnforceNotNull(nameof(postExcerpt));
 		}
@@ -108,8 +114,10 @@ namespace CultureWars.Data.Export.WordPress.Domain
 				postLink,
 				attachmentUrl,
 				status,
-				author,
-				postDate, 
+				author, 
+				pubDate,
+				postDate,
+				gmtPostDate,
 				postContentCData,
 				postExcerptCData);
 		}
@@ -118,6 +126,7 @@ namespace CultureWars.Data.Export.WordPress.Domain
 		{
 			var item = new XElement("item");
 
+			return null;
 		}
 	}
 }

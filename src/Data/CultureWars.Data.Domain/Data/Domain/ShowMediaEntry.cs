@@ -34,18 +34,18 @@ namespace CultureWars.Data.Domain
 		public string ThumnailImageUrl { get; set; }
 		
 
-		public virtual ICollection<GuestAppearance> GuestAppearances { get; set; }
+		//public virtual ICollection<GuestAppearance> GuestAppearances { get; set; }
 		
-		public virtual ICollection<MediaCategory> MediaCategories { get; set; }
+		//public virtual ICollection<MediaCategory> MediaCategories { get; set; }
 		
-		public virtual ICollection<ShowMediaTranscriptSlice> ShowMediaTranscriptSlices { get; set; }
+		//public virtual ICollection<ShowMediaTranscriptSlice> ShowMediaTranscriptSlices { get; set; }
 
 		
-		public ShowMediaEntry()
-    {
-      GuestAppearances = new HashSet<GuestAppearance>();
-      MediaCategories = new HashSet<MediaCategory>();
-			ShowMediaTranscriptSlices = new HashSet<ShowMediaTranscriptSlice>();
-		}
+		//public ShowMediaEntry()
+  //  {
+  //    GuestAppearances = new HashSet<GuestAppearance>();
+  //    MediaCategories = new HashSet<MediaCategory>();
+		//	ShowMediaTranscriptSlices = new HashSet<ShowMediaTranscriptSlice>();
+		//}
   }
 }

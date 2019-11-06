@@ -77,11 +77,11 @@ namespace CultureWars.API.GoogleArchives.JsonParsing
 		{
 			get => _tagListSorted ??
 				(_tagListSorted = _metadata
-					.Snippet
-					.VideoTags
-					.OrderBy(t => t)
-					.Distinct()
-					.ToArray());
+					?.Snippet
+					?.VideoTags
+					?.OrderBy(t => t)
+					?.Distinct()
+					?.ToArray());
 		}
 
 
@@ -90,6 +90,84 @@ namespace CultureWars.API.GoogleArchives.JsonParsing
 		{
 			metadata.IsNotNull(nameof(metadata));
 			_metadata = metadata;
+		}
+
+		public string GetStrLineAsCsv()
+		{
+			var sb = new StringBuilder();
+
+			sb.Append($"{VideoID.Quote()},");
+			sb.Append($"{Title.Quote()},");
+			//sb.Append($"{Description.Quote()},");
+
+			var playbackDurationStr = $"{PlaybackDuration.Hours:0}" +
+				$":{PlaybackDuration.Minutes:00}" +
+				$":{PlaybackDuration.Seconds:00}" +
+				$".{PlaybackDuration.Milliseconds:000}";
+
+			sb.Append($"{playbackDurationStr.Quote()},");
+			sb.Append($"{Views.ToString().Quote()},");
+			sb.Append($"{Likes.ToString().Quote()},");
+			sb.Append($"{Dislikes.ToString().Quote()},");
+			sb.Append($"{Comments.ToString().Quote()},");
+			sb.Append($"{Favorites.ToString().Quote()},");
+			sb.Append($"{OriginalVideoFileName.Quote()},");
+			sb.Append($"{VideoPublishedDate.ToString("O").Quote()},");
+
+			var tagSb = new StringBuilder();
+			foreach (var tag in TagList)
+			{
+				tagSb.Append($"{tag}, ");
+			}
+			var tagStrContent = tagSb.ToString()
+				.TrimEnd(' ', ',');
+
+			sb.Append($"{tagStrContent.Quote()}");
+
+			var line = sb.ToString();
+			return line;
+		}
+
+
+		public string GetStrLineAsList()
+		{
+			var sb = new StringBuilder();
+
+			sb.AppendLine($"yt:VideoID:             {VideoID}");
+			sb.AppendLine($"  yt:Title:             {Title}");
+			//sb.Append($"{Description.Quote()},");
+
+			var playbackDurationStr = $"{PlaybackDuration.Hours:0}" +
+				$":{PlaybackDuration.Minutes:00}" +
+				$":{PlaybackDuration.Seconds:00}" +
+				$".{PlaybackDuration.Milliseconds:000}";
+
+			sb.AppendLine($"  yt:Duration:          {playbackDurationStr}");
+			sb.AppendLine($"  yt:Views:             {Views}");
+			sb.AppendLine($"  yt:Likes:             {Likes}");
+			sb.AppendLine($"  yt:Dislikes:          {Dislikes}");
+			sb.AppendLine($"  yt:Comments:          {Comments}");
+			sb.AppendLine($"  yt:Favorites:         {Favorites}");
+			sb.AppendLine($"  yt:OrigVidFileName:   {OriginalVideoFileName}");
+			sb.AppendLine($"  yt:VideoPubDate:      {VideoPublishedDate:O}");
+
+			var tagStrContent = "";
+
+			if (TagList != null)
+			{
+				var tagSb = new StringBuilder();
+				foreach (var tag in TagList)
+				{
+					tagSb.Append($"{tag}, ");
+				}
+				tagStrContent = tagSb.ToString()
+					.TrimEnd(' ', ',');
+			}
+
+			sb.AppendLine($"  yt:tags:              {tagStrContent}");
+
+			var line = sb.ToString();
+			return line;
 		}
 
 

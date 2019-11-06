@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <RootNamespace>CultureWars</RootNamespace>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
@@ -11,8 +11,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\APIs\CultureWars.API.Google.Cloud.Speech\CultureWars.API.Google.Cloud.Speech.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API.InternetArchive\CultureWars.API.InternetArchive.csproj" />
+    <ProjectReference Include="..\..\APIs\CultureWars.API.YouTube\CultureWars.API.YouTube.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API\CultureWars.API.csproj" />
-    <ProjectReference Include="..\..\Data\CultureWars.Data.Domain\CultureWars.Data.Domain.csproj" />
+    <ProjectReference Include="..\..\Data\CultureWars.Data.Export.WordPress\CultureWars.Data.Export.WordPress.csproj" />
   </ItemGroup>
 
 </Project>

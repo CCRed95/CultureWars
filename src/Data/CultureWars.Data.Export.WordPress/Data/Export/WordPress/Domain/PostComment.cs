@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 using System.Xml.Linq;
 using Ccr.Std.Core.Extensions;
 using CultureWars.Core.Extensions;
@@ -76,34 +75,38 @@ namespace CultureWars.Data.Export.WordPress.Domain
 					$"The {nameof(XElement).SQuote()} element name {xElement.Name.ToString().SQuote()} is " +
 					$"not valid for this method. Expected name \"comment\".");
 
+			var commentId = xElement.GetIntSubElement("wp", "comment_id");
+			var commentApproved = xElement.GetIntSubElement("wp", "comment_approved");
+			var commentAuthor = xElement.GetSubElement("wp", "comment_author");
+			var commentDate = xElement.GetDateTimeSubElement("wp", "comment_date", "yyyy-MM-dd HH:mm:ss");
+			var commentContent = xElement.GetSubElement("wp", "comment_content");
+			var commentDateGmt = xElement.GetDateTimeSubElement("wp", "comment_date_gmt", "yyyy-MM-dd HH:mm:ss");
+			var parentId = xElement.GetIntSubElement("wp", "comment_parent");
 
-			if (!xElement.TryGetIntSubElement("wp", "comment_id", out var commentId))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_id\" as integer.");
 
-			if (!xElement.TryGetIntSubElement("wp", "comment_approved", out var commentApproved))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_approved\" as integer.");
+			////if (!xElement.TryGetIntSubElement("wp", "comment_approved", out var commentApproved))
+			////	throw new XmlException(
+			////		$"Could not find element \"wp:comment_approved\" as integer.");
 
-			if (!xElement.TryGetSubElement("wp", "comment_author", out var commentAuthor))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_author\" as string.");
+			//if (!xElement.TryGetSubElement("wp", "comment_author", out var commentAuthor))
+			//	throw new XmlException(
+			//		$"Could not find element \"wp:comment_author\" as string.");
 
-			if (!xElement.TryGetDateTimeSubElement("wp", "comment_date", "yyyy-MM-dd HH:mm:ss", out var commentDate))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_date\" as DateTime in format \"yyyy-MM-dd HH:mm:ss\".");
+			//if (!xElement.TryGetDateTimeSubElement("wp", "comment_date", "yyyy-MM-dd HH:mm:ss", out var commentDate))
+			//	throw new XmlException(
+			//		$"Could not find element \"wp:comment_date\" as DateTime in format \"yyyy-MM-dd HH:mm:ss\".");
 
-			if (!xElement.TryGetSubElement("wp", "comment_content", out var commentContent))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_content\" as string.");
+			//if (!xElement.TryGetSubElement("wp", "comment_content", out var commentContent))
+			//	throw new XmlException(
+			//		$"Could not find element \"wp:comment_content\" as string.");
 
-			if (!xElement.TryGetDateTimeSubElement("wp", "comment_date_gmt", "yyyy-MM-dd HH:mm:ss", out var commentDateGmt))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_date_gmt\" as DateTime in format \"yyyy-MM-dd HH:mm:ss\".");
+			//if (!xElement.TryGetDateTimeSubElement("wp", "comment_date_gmt", "yyyy-MM-dd HH:mm:ss", out var commentDateGmt))
+			//	throw new XmlException(
+			//		$"Could not find element \"wp:comment_date_gmt\" as DateTime in format \"yyyy-MM-dd HH:mm:ss\".");
 
-			if (!xElement.TryGetIntSubElement("wp", "comment_parent", out var parentId))
-				throw new XmlException(
-					$"Could not find element \"wp:comment_parent\" as integer.");
+			//if (!xElement.TryGetIntSubElement("wp", "comment_parent", out var parentId))
+			//	throw new XmlException(
+			//		$"Could not find element \"wp:comment_parent\" as integer.");
 
 			return new PostComment(
 				commentId,

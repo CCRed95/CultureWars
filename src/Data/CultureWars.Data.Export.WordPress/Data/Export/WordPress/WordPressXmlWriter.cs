@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using CultureWars.Data.Domain;
+using CultureWars.Data.Export.WordPress.Domain;
 using JetBrains.Annotations;
 
 namespace CultureWars.Data.Export.WordPress
@@ -42,7 +43,7 @@ namespace CultureWars.Data.Export.WordPress
 
 		public IReadOnlyList<CultureWarsCategory> Categories { get; }
 
-		public IReadOnlyList<WordPressItem>
+		public IReadOnlyList<WordPressPostItem> Posts { get; }
 
 
 	}

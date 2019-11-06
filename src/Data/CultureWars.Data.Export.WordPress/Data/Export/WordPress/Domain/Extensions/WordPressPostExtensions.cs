@@ -13,7 +13,9 @@
 				.WriteTitle(@this.PostTitle)
 				.WritePostLink(@this.PostLink)
 				.WriteAuthor(@this.Author)
-				.WritePostDate(@this.PostDateTime)//categories
+				.WritePostDate(@this.PublicationDate)
+				.WritePostDate(@this.PostDate)
+				.WritePostDate(@this.PostDateGMT)//categories
 				.WriteTags(@this.Tags)
 				.WriteContent(@this.PostContent)
 				.WriteExcerpt(@this.PostExcerpt)
@@ -33,8 +35,10 @@
 				.WriteTitle(post.PostTitle)
 				.WritePostLink(post.PostLink)
 				.WriteAuthor(post.Author)
-				.WritePostDate(post.PostDateTime)//categories
-				.WriteTags(post.Tags)
+				.WritePostDate(post.PublicationDate)
+				.WritePostDate(post.PostDate)
+				.WritePostDate(post.PostDateGMT)//categories
+				//.WriteTags(post.Tags)
 				.WriteContent(post.PostContent)
 				.WriteExcerpt(post.PostExcerpt)
 				.WriteCommentStatus("open")

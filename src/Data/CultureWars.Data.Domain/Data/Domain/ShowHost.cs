@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace CultureWars.Data.Domain
 {
-	public partial class ShowHost
+	public partial struct ShowHost
 	{
 		[NotNull]
 		public string ShowHostName { get; }

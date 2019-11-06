@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Xml.Linq;
 using CultureWars.Data.Domain;
 
 namespace CultureWars.Data.Export.WordPress.Domain
 {
 	public interface IWordPressItem
+		: IWordPressXmlItem
 	{
 		int PostID { get; }
 
@@ -18,13 +18,14 @@ namespace CultureWars.Data.Export.WordPress.Domain
 
 		CultureWarsAuthor Author { get; }
 
-		DateTime PostDateTime { get; }
+		DateTime PublicationDate { get; }
+
+		DateTime PostDate { get; }
+
+		DateTime PostDateGMT { get; }
 
 		string PostContent { get; }
 
 		string PostExcerpt { get; }
-
-
-		XElement ToXElement();
 	}
 }

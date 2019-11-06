@@ -32,12 +32,12 @@ namespace CultureWars.API.YouTube
 		/// <summary>
 		///		Gets a set of all available media stream infos for given video.
 		/// </summary>
-		Task<MediaStreamInfoSet> GetVideoMediaStreamInfosAsync(string videoId);
+		//Task<MediaStreamInfoSet> GetVideoMediaStreamInfosAsync(string videoId);
 
 		/// <summary>
 		///		Gets all available closed caption track infos for given video.
 		/// </summary>
-		Task<IReadOnlyList<ClosedCaptionTrackInfo>> GetVideoClosedCaptionTrackInfosAsync(string videoId);
+		//Task<IReadOnlyList<ClosedCaptionTrackInfo>> GetVideoClosedCaptionTrackInfosAsync(string videoId);
 
 		#endregion
 
@@ -47,12 +47,12 @@ namespace CultureWars.API.YouTube
 		/// Gets playlist information by ID.
 		/// The video list is truncated at given number of pages (1 page ≤ 200 videos).
 		/// </summary>
-		Task<Playlist> GetPlaylistAsync(string playlistId, int maxPages);
+		//Task<Playlist> GetPlaylistAsync(string playlistId, int maxPages);
 
 		/// <summary>
 		/// Gets playlist information by ID.
 		/// </summary>
-		Task<Playlist> GetPlaylistAsync(string playlistId);
+		//Task<Playlist> GetPlaylistAsync(string playlistId);
 
 		#endregion
 
@@ -101,13 +101,13 @@ namespace CultureWars.API.YouTube
 		/// <summary>
 		/// Gets the media stream associated with given metadata.
 		/// </summary>
-		Task<MediaStream> GetMediaStreamAsync(MediaStreamInfo info);
+		//Task<MediaStream> GetMediaStreamAsync(MediaStreamInfo info);
 
 		/// <summary>
 		/// Downloads the stream associated with given metadata to the output stream.
 		/// </summary>
-		Task DownloadMediaStreamAsync(MediaStreamInfo info, Stream output,
-				IProgress<double> progress = null, CancellationToken cancellationToken = default);
+//		Task DownloadMediaStreamAsync(MediaStreamInfo info, Stream output,
+	//			IProgress<double> progress = null, CancellationToken cancellationToken = default);
 
 #if NETSTANDARD2_0 || NET45
 
@@ -126,13 +126,13 @@ namespace CultureWars.API.YouTube
 		/// <summary>
 		/// Gets the closed caption track associated with given metadata.
 		/// </summary>
-		Task<ClosedCaptionTrack> GetClosedCaptionTrackAsync(ClosedCaptionTrackInfo info);
+	//	Task<ClosedCaptionTrack> GetClosedCaptionTrackAsync(ClosedCaptionTrackInfo info);
 
 		/// <summary>
 		/// Downloads the closed caption track associated with given metadata to the output stream.
 		/// </summary>
-		Task DownloadClosedCaptionTrackAsync(ClosedCaptionTrackInfo info, Stream output,
-				IProgress<double> progress = null, CancellationToken cancellationToken = default);
+	//	Task DownloadClosedCaptionTrackAsync(ClosedCaptionTrackInfo info, Stream output,
+		//		IProgress<double> progress = null, CancellationToken cancellationToken = default);
 
 #if NETSTANDARD2_0 || NET45
 

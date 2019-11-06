@@ -21,7 +21,8 @@ namespace CultureWars.API.Google.Cloud.Speech
 			using (Stream credentialsStream = new FileStream(
 				_credentialsPath, FileMode.Open))
 			{
-				var googleCredential = GoogleCredential.FromStream(credentialsStream);
+				var googleCredential = GoogleCredential
+					.FromStream(credentialsStream);
 
 				var channel = new Grpc.Core.Channel(
 					SpeechClient.DefaultEndpoint.Host,
@@ -41,10 +42,6 @@ namespace CultureWars.API.Google.Cloud.Speech
 						EnableWordTimeOffsets = true,
 						EnableAutomaticPunctuation = true,
 						ProfanityFilter = false,
-						//Metadata = new RecognitionMetadata()
-						//{
-							
-						//}
 					}, recognitionAudio);
 
 				longOperation = longOperation.PollUntilCompleted();
@@ -60,7 +57,10 @@ namespace CultureWars.API.Google.Cloud.Speech
 			}
 		}
 	}
-}/*				var begin = alternative.Words.FirstOrDefault();
+}
+
+
+/*				var begin = alternative.Words.FirstOrDefault();
 						var last = alternative.Words.LastOrDefault();
 
 						if (begin == null)

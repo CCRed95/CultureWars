@@ -8,8 +8,21 @@ namespace CultureWars.Data.Domain
 
 		public string VideoSourceUrl { get; set; }
 
-		public ICollection<VideoTimeStampedTopic> VideoTimeStampedTopics { get; set; }
+		public ICollection<GuestAppearance> GuestAppearances { get; set; }
 
-		public ICollection<VideoTag> VideoTags { get; set; }
+		public ICollection<VideoTimeStampedTag> VideoTimeStampedTags { get; set; }
+
+		public ICollection<CultureWarsCategory> CultureWarsCategories { get; set; }
+
+		public ICollection<CultureWarsTag> CultureWarsTags { get; set; }
+
+
+		public CultureWarsVideo()
+		{
+			GuestAppearances = new HashSet<GuestAppearance>();
+			VideoTimeStampedTags = new HashSet<VideoTimeStampedTag>();
+			CultureWarsCategories = new HashSet<CultureWarsCategory>();
+			CultureWarsTags = new HashSet<CultureWarsTag>();
+		}
 	}
 }
