@@ -30,12 +30,18 @@ CREATE TABLE [dbo].[CultureWarsCategories] (
 
 CREATE TABLE [dbo].[CultureWarsTags] (
 	[CultureWarsTagID] [int] NOT NULL IDENTITY,
-	[TagName] [varchar](300) NULL,
+	[TagName] [varchar](300) NOT NULL,
 	[TagFriendlyName] [varchar](300) NOT NULL,
-	[HtmlEncodedTagName] [nvarchar](300) NOT NULL,
+	[HtmlEncodedTagName] [nvarchar ](300) NOT NULL,
 	CONSTRAINT [PK_dbo.CultureWarsTags]
 		PRIMARY KEY ([CultureWarsTagID])
 )
+CREATE UNIQUE INDEX [UIX_CultureWarsTag_TagName]
+	ON [dbo].[CultureWarsTags]([TagName])
+CREATE UNIQUE INDEX [UIX_CultureWarsTag_TagFriendlyName]
+	ON [dbo].[CultureWarsTags]([TagFriendlyName])
+CREATE UNIQUE INDEX [UIX_CultureWarsTag_HtmlEncodedTagName]
+	ON [dbo].[CultureWarsTags]([HtmlEncodedTagName])
 
 CREATE TABLE [dbo].[CultureWarsVideos] (
 	[CultureWarsVideoID] [int] NOT NULL IDENTITY,

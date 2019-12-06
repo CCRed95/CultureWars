@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Xml;
 using System.Xml.Linq;
+using CultureWars.Data.Export.WordPress.Domain;
 
 namespace CultureWars.Extensions
 {
@@ -255,7 +256,7 @@ namespace CultureWars.Extensions
 		}
 
 
-		public static IEnumerable<CultureWarsCategory> GetPostCategories(
+		public static IEnumerable<WPCategory> GetPostCategories(
 			this XElement @this)
 		{
 			var categoryNodes = @this.Elements(
@@ -273,7 +274,7 @@ namespace CultureWars.Extensions
 				
 				var nicenameAttribute = categoryNode.Attribute(XName.Get("nicename"));
 				var categoryName = categoryNode.Value;
-				var cultureWarsCategory = CultureWarsCategory.FromNameOrNull(categoryName);
+				var cultureWarsCategory = WPCategory.FromNameOrNull(categoryName);
 
 				if (cultureWarsCategory == null)
 				{
@@ -281,7 +282,7 @@ namespace CultureWars.Extensions
 						throw new XmlException(
 							$"This \"category\" node has no \"nicename\" attribute.");
 
-					cultureWarsCategory = new CultureWarsCategory(
+					cultureWarsCategory = new WPCategory(
 						categoryName,
 						nicenameAttribute.Value);
 				}
@@ -290,7 +291,7 @@ namespace CultureWars.Extensions
 			}
 		}
 
-		public static IEnumerable<CultureWarsTag> GetPostTags(
+		public static IEnumerable<WPTerm> GetPostTags(
 			this XElement @this)
 		{
 			var categoryNodes = @this.Elements(
@@ -308,7 +309,7 @@ namespace CultureWars.Extensions
 
 				var nicenameAttribute = categoryNode.Attribute(XName.Get("nicename"));
 				var tagName = categoryNode.Value;
-				var cultureWarsTag = CultureWarsTag.FromNameOrNull(tagName);
+				var cultureWarsTag = WPTerm.FromNameOrNull(tagName);
 
 				if (cultureWarsTag == null)
 				{
@@ -316,7 +317,8 @@ namespace CultureWars.Extensions
 						throw new XmlException(
 							$"This \"category\" node has no \"nicename\" attribute.");
 
-					cultureWarsTag = new CultureWarsTag(
+					cultureWarsTag = new WPTerm(
+						-1, // TODO fix
 						tagName,
 						nicenameAttribute.Value,
 						tagName);

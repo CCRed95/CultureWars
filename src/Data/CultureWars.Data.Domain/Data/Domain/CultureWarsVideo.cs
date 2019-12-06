@@ -12,17 +12,17 @@ namespace CultureWars.Data.Domain
 
 		public ICollection<VideoTimeStampedTag> VideoTimeStampedTags { get; set; }
 
-		public ICollection<CultureWarsCategory> CultureWarsCategories { get; set; }
+		//public ICollection<WPCategory> CultureWarsCategories { get; set; }
 
-		public ICollection<CultureWarsTag> CultureWarsTags { get; set; }
+//		public ICollection<WPTerm> CultureWarsTags { get; set; }
 
 
 		public CultureWarsVideo()
 		{
 			GuestAppearances = new HashSet<GuestAppearance>();
 			VideoTimeStampedTags = new HashSet<VideoTimeStampedTag>();
-			CultureWarsCategories = new HashSet<CultureWarsCategory>();
-			CultureWarsTags = new HashSet<CultureWarsTag>();
+		//	CultureWarsCategories = new HashSet<CultureWarsCategory>();
+	//		CultureWarsTags = new HashSet<CultureWarsTag>();
 		}
 	}
 }

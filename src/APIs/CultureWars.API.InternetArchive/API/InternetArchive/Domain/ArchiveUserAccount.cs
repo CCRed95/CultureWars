@@ -93,10 +93,27 @@ namespace CultureWars.API.InternetArchive.Domain
 				$"{@this.Identifier}/";
 		}
 
+		public static string GetItemThumbnailDownloadPageUrl(
+			this InternetArchiveItem @this)
+		{
+			return $"https://www.archive.org/" +
+				$"download/" +
+				$"{@this.Identifier}/" +
+				$"{@this.Identifier}.thumbs/";
+		}
+
 		public static IReadOnlyList<InternetArchiveFile> GetItemFiles(
 			this InternetArchiveItem @this)
 		{
 			return ArchiveFileInterpreter.ScrapeArchiveFiles(@this)
+				.ToArray();
+		}
+
+		public static IReadOnlyList<InternetArchiveFile> GetItemThumbnailFiles(
+			this InternetArchiveItem @this)
+		{
+			return ArchiveFileInterpreter.ScrapeArchiveThumbnailFiles(@this)
+				.Where(t => t.FilePathUrl.EndsWith(".jpg"))
 				.ToArray();
 		}
 	}
@@ -196,7 +213,8 @@ namespace CultureWars.API.InternetArchive.Domain
 			[NotNull] string title,
 			DateTime lastModifiedDate,
 			double approximateBytes,
-			int indexWithinItem)
+			int indexWithinItem,
+			bool isThumbnailFile = false)
 		{
 			ownerArchiveItem.IsNotNull(nameof(ownerArchiveItem));
 			fileName.IsNotNull(nameof(fileName));
@@ -208,7 +226,12 @@ namespace CultureWars.API.InternetArchive.Domain
 			FileKind = fileKind;
 			Title = title;
 			IndexWithinItem = indexWithinItem;
-			FilePathUrl = $"{ownerArchiveItem.GetItemDownloadPageUrl()}{fileName}";
+
+			if (isThumbnailFile)
+				FilePathUrl = $"{ownerArchiveItem.GetItemThumbnailDownloadPageUrl()}{fileName}";
+			else
+				FilePathUrl = $"{ownerArchiveItem.GetItemDownloadPageUrl()}{fileName}";
+			
 			LastModifiedDate = lastModifiedDate;
 			ApproximateBytes = approximateBytes;
 		}

@@ -28,14 +28,12 @@ namespace CultureWars.API.InternetArchive
 
 		protected override DomainFragment RequestBuilder
 		{
-			get => _requestBuilder
-				?? (_requestBuilder = new DomainFragment(_domain));
+			get => _requestBuilder ??= new DomainFragment(_domain);
 		}
 
 		protected DomainFragment UploadRequestBuilder
 		{
-			get => _uploadRequestBuilder
-				?? (_uploadRequestBuilder = new DomainFragment(_uploadDomain));
+			get => _uploadRequestBuilder ??= new DomainFragment(_uploadDomain);
 		}
 
 		

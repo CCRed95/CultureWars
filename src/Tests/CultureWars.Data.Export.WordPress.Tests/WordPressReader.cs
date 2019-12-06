@@ -18,7 +18,7 @@ namespace CultureWars.Data.Export.WordPress.Tests
 		public void CanReadPostComment(
 			XDocument commentNode)
 		{
-			var comment = PostComment.FromXElement(commentNode.Root);
+			//var comment = WPPostComment.FromXElement(commentNode.Root);
 		}
 
 		[Test]
@@ -26,7 +26,7 @@ namespace CultureWars.Data.Export.WordPress.Tests
 		public void CanReadPost(
 			XDocument postNode)
 		{
-			var post = WordPressPostItem.FromXElement(postNode.Root);
+			//var post = WPPostItem.FromXElement(postNode.Root);
 		}
 		//<iframe src = "//www.youtube.com/embed/NBD4c6fkdQE?wmode=opaque&amp;enablejsapi=1" height="480" width="854" scrolling="no" frameborder="0" allowfullscreen="">
 		//</iframe>
@@ -63,7 +63,7 @@ namespace CultureWars.Data.Export.WordPress.Tests
 
 			var index = 0;
 
-			foreach (var tag in CultureWarsTag.AllTags)
+			foreach (var tag in WPTerm.AllTags)
 			{
 				var categoryNode = new XElement(
 					XName.Get("tag", "http://wordpress.org/export/1.2/"));
@@ -99,13 +99,10 @@ namespace CultureWars.Data.Export.WordPress.Tests
 			var exportFile = new FileInfo(
 				desktopDirectory.FullName + @"\CultureWarsTags.xml");
 
-			using (var textWriter = exportFile.CreateText())
-			{
-				using (var xmlWriter = XmlWriter.Create(textWriter))
-				{
-					xDocument.Save(xmlWriter);
-				}
-			}
+			using var textWriter = exportFile.CreateText();
+			using var xmlWriter = System.Xml.XmlWriter.Create(textWriter);
+
+			xDocument.Save(xmlWriter);
 		}
 
 

@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\CultureWars.Core\CultureWars.Core.csproj" />
     <ProjectReference Include="..\CultureWars.Data.Domain\CultureWars.Data.Domain.csproj" />
+    <ProjectReference Include="..\CultureWars.Data\CultureWars.Data.csproj" />
   </ItemGroup>
 
 </Project>

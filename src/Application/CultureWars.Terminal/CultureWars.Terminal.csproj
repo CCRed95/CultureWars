@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -14,6 +14,8 @@
     <ProjectReference Include="..\..\APIs\CultureWars.API.YouTube\CultureWars.API.YouTube.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API\CultureWars.API.csproj" />
     <ProjectReference Include="..\..\Data\CultureWars.Data.Export.WordPress\CultureWars.Data.Export.WordPress.csproj" />
+    <ProjectReference Include="..\..\Data\CultureWars.Data.WordPress.Domain\CultureWars.Data.WordPress.Domain.csproj" />
+    <ProjectReference Include="..\..\Media\CultureWars.Media\CultureWars.Media.csproj" />
   </ItemGroup>
 
 </Project>

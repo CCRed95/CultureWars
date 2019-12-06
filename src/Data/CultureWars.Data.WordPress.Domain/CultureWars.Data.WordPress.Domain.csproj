@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>CultureWars</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191116043124_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116043124_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191116044018_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116044018_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191116044211_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116044211_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191116044701_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116044701_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191116050713_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116050713_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191116050914_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116050914_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191116052232_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191116052232_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+	<ItemGroup>
+    <PackageReference Include="Ccr.Std.Core" Version="1.0.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

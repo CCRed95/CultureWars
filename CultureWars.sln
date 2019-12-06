@@ -25,6 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Data.Export.Wor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Data", "src\Data\CultureWars.Data\CultureWars.Data.csproj", "{40C06C06-8209-4877-BA7C-19D91A92CE53}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Data.WordPress.Domain", "src\Data\CultureWars.Data.WordPress.Domain\CultureWars.Data.WordPress.Domain.csproj", "{868CA08B-4111-487B-82A3-ADCDB91FAC08}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CultureWars.Core.Terminal", "src\Core\CultureWars.Core.Terminal\CultureWars.Core.Terminal.csproj", "{F1D54203-3A5D-4F83-8603-4343E9F15749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CultureWars.Media", "src\Media\CultureWars.Media\CultureWars.Media.csproj", "{A0693A12-78F5-4176-BF77-D29CB452CD90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +77,18 @@ Global
 		{40C06C06-8209-4877-BA7C-19D91A92CE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40C06C06-8209-4877-BA7C-19D91A92CE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40C06C06-8209-4877-BA7C-19D91A92CE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{868CA08B-4111-487B-82A3-ADCDB91FAC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868CA08B-4111-487B-82A3-ADCDB91FAC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868CA08B-4111-487B-82A3-ADCDB91FAC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868CA08B-4111-487B-82A3-ADCDB91FAC08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D54203-3A5D-4F83-8603-4343E9F15749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D54203-3A5D-4F83-8603-4343E9F15749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D54203-3A5D-4F83-8603-4343E9F15749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D54203-3A5D-4F83-8603-4343E9F15749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0693A12-78F5-4176-BF77-D29CB452CD90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0693A12-78F5-4176-BF77-D29CB452CD90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0693A12-78F5-4176-BF77-D29CB452CD90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0693A12-78F5-4176-BF77-D29CB452CD90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

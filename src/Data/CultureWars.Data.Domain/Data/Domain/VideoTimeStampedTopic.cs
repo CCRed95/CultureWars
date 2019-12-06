@@ -14,6 +14,6 @@ namespace CultureWars.Data.Domain
 
 		public int CultureWarsTagID { get; set; }
 		// FK -> ID
-		public CultureWarsTag CultureWarsTag { get; set; }
+		//public CultureWarsTag CultureWarsTag { get; set; }
 	}
 }
