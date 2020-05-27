@@ -3,7 +3,7 @@ using System.Linq;
 using Ccr.Std.Core.Extensions;
 using JetBrains.Annotations;
 
-namespace CultureWars.Data.Extensions
+namespace CultureWars.Core.Data.Extensions
 {
 	public static class LinqExtensions
 	{

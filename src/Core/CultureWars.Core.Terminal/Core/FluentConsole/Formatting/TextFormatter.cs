@@ -13,9 +13,9 @@ namespace CultureWars.Core.FluentConsole.Formatting
 	public sealed class TextFormatter
 	{
 		// NOTE: I still feel that there's too much overlap between this class and the TextAnnotator class.
-		private Color defaultColor;
-		private TextPattern textPattern;
-		private readonly string defaultFormatToken = "{[0-9][^}]*}";
+		private Color _defaultColor;
+		private TextPattern _textPattern;
+		private readonly string _defaultFormatToken = "{[0-9][^}]*}";
 
 
 		/// <summary>
@@ -23,12 +23,14 @@ namespace CultureWars.Core.FluentConsole.Formatting
 		/// class, this class is meant to be used in the styling of *formatted* strings, i.e. strings that
 		/// follow the "{0}, {1}...{n}" pattern.
 		/// </summary>
-		/// <param name="defaultColor">The color to be associated with unstyled text.</param>
+		/// <param name="defaultColor">
+		/// The color to be associated with unstyled text.
+		/// </param>
 		public TextFormatter(
 			Color defaultColor)
 		{
-			this.defaultColor = defaultColor;
-			textPattern = new TextPattern(defaultFormatToken);
+			_defaultColor = defaultColor;
+			_textPattern = new TextPattern(_defaultFormatToken);
 		}
 
 		/// <summary>
@@ -36,34 +38,44 @@ namespace CultureWars.Core.FluentConsole.Formatting
 		/// class, this class is meant to be used in the styling of *formatted* strings, i.e. strings that
 		/// follow the "{0}, {1}...{n}" pattern.
 		/// </summary>
-		/// <param name="defaultColor">The color to be associated with unstyled text.</param>
-		/// <param name="formatToken">A regular expression representing the format token.  By default,
-		/// the TextFormatter will use a regular expression that matches the "{0}, {1}...{n}" pattern.</param>
+		/// <param name="defaultColor">
+		/// The color to be associated with unstyled text.
+		/// </param>
+		/// <param name="formatToken">
+		/// A regular expression representing the format token. By default, the TextFormatter will use a
+		/// regular expression that matches the "{0}, {1}...{n}" pattern.
+		/// </param>
 		public TextFormatter(
 			Color defaultColor,
 			string formatToken)
 		{
-			this.defaultColor = defaultColor;
-			textPattern = new TextPattern(defaultFormatToken);
+			_defaultColor = defaultColor;
+			_textPattern = new TextPattern(formatToken);
 		}
 
-		
 
 		/// <summary>
 		/// Partitions the input text into styled and unstyled pieces.
 		/// </summary>
-		/// <param name="input">The text to be styled.</param>
-		/// <param name="args">A collection of objects that will replace the format tokens in the
-		/// input string.</param>
-		/// <returns>Returns a map relating pieces of text to their corresponding styles.</returns>
-		public List<KeyValuePair<string, Color>> GetFormatMap(
+		/// <param name="input">
+		/// The text to be styled.
+		/// </param>
+		/// <param name="args">
+		/// A collection of objects that will replace the format tokens in the input string.
+		/// </param>
+		/// <param name="colors">
+		/// </param>
+		/// <returns>
+		/// Returns a map relating pieces of text to their corresponding styles.
+		/// </returns>
+		public List<(string, Color)> GetFormatMap(
 			string input,
 			object[] args,
 			Color[] colors)
 		{
-			var formatMap = new List<KeyValuePair<string, Color>>();
-			var locations = textPattern.GetMatchLocations(input).ToList();
-			var indices = textPattern.GetMatchesLiteral(input).ToList();
+			var formatMap = new List<(string, Color)>();
+			var locations = _textPattern.GetMatchLocations(input).ToList();
+			var indices = _textPattern.GetMatchesLiteral(input).ToList();
 
 			TryExtendColors(ref args, ref colors);
 
@@ -85,14 +97,14 @@ namespace CultureWars.Core.FluentConsole.Formatting
 				var vanilla = input.Substring(vanillaStart, vanillaEnd - vanillaStart);
 				var chocolate = args[styledIndex].ToString();
 
-				formatMap.Add(new KeyValuePair<string, Color>(vanilla, defaultColor));
-				formatMap.Add(new KeyValuePair<string, Color>(chocolate, colors[styledIndex]));
+				formatMap.Add((vanilla, _defaultColor));
+				formatMap.Add((chocolate, colors[styledIndex]));
 			}
 
 			if (chocolateEnd < input.Length)
 			{
 				var vanilla = input.Substring(chocolateEnd, input.Length - chocolateEnd);
-				formatMap.Add(new KeyValuePair<string, Color>(vanilla, defaultColor));
+				formatMap.Add((vanilla, _defaultColor));
 			}
 
 			return formatMap;

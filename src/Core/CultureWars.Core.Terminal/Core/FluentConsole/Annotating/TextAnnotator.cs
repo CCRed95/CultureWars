@@ -17,42 +17,45 @@ namespace CultureWars.Core.FluentConsole.Annotating
 
 
 		/// <summary>
-		///		Exposes methods and properties used in batch styling of text.
+		///	Exposes methods and properties used in batch styling of text.
 		/// </summary>
 		/// <param name="styleSheet">
-		///		The StyleSheet instance that defines the way in which text should be styled.
+		///	The StyleSheet instance that defines the way in which text should be styled.
 		/// </param>
 		public TextAnnotator(
 			StyleSheet styleSheet)
 		{
 			_styleSheet = styleSheet;
+
 			foreach (var styleClass in styleSheet.Styles)
 			{
-				_matchFoundHandlers.Add(styleClass, (styleClass as Stylizer)?.MatchFoundHandler);
+				_matchFoundHandlers.Add(
+					styleClass, 
+					(styleClass as Stylizer)?.MatchFoundHandler);
 			}
 		}
 
 
 		/// <summary>
-		///		Partitions the input text into styled and unstyled pieces.
+		///	Partitions the input text into styled and unstyled pieces.
 		/// </summary>
 		/// <param name="input">
-		///		The text to be styled.
+		///	The text to be styled.
 		/// </param>
 		/// <returns>
-		///		Returns a map relating pieces of text to their corresponding styles.
+		///	Returns a map relating pieces of text to their corresponding styles.
 		/// </returns>
-		public List<KeyValuePair<string, Color>> GetAnnotationMap(
+		public List<(string, Color)> GetAnnotationMap(
 			string input)
 		{
-			IEnumerable<KeyValuePair<StyleClass<TextPattern>, TextMatchDescriptor>> targets = GetStyleTargets(input);
+			var targets = GetStyleTargets(input);
 			return GenerateStyleMap(targets, input);
 		}
 
-		private List<KeyValuePair<StyleClass<TextPattern>, TextMatchDescriptor>> GetStyleTargets(
+		private IEnumerable<(StyleClass<TextPattern>, TextMatchDescriptor)> GetStyleTargets(
 			string input)
 		{
-			var matches = new List<KeyValuePair<StyleClass<TextPattern>, TextMatchDescriptor>>();
+			var matches = new List<(StyleClass<TextPattern>, TextMatchDescriptor)>();
 			var locations = new List<TextMatchDescriptor>();
 
 			foreach (var pattern in _styleSheet.Styles)
@@ -61,32 +64,32 @@ namespace CultureWars.Core.FluentConsole.Annotating
 				{
 					if (locations.Contains(location))
 					{
-						int index = locations.IndexOf(location);
+						var index = locations.IndexOf(location);
 
 						matches.RemoveAt(index);
 						locations.RemoveAt(index);
 					}
-					matches.Add(new KeyValuePair<StyleClass<TextPattern>, TextMatchDescriptor>(pattern, location));
+					matches.Add((pattern, location));
 					locations.Add(location);
 				}
 			}
-			matches = matches.OrderBy(match => match.Value).ToList();
+
+			matches = matches.OrderBy(match => match.Item2).ToList();
 			return matches;
 		}
 
-		private List<KeyValuePair<string, Color>> GenerateStyleMap(
-			IEnumerable<KeyValuePair<StyleClass<TextPattern>, TextMatchDescriptor>> targets,
+		private List<(string, Color)> GenerateStyleMap(
+			IEnumerable<(StyleClass<TextPattern>, TextMatchDescriptor)> targets,
 			string input)
 		{
-			var styleMap = new List<KeyValuePair<string, Color>>();
+			var styleMap = new List<(string, Color)>();
 
 			var previousLocation = new TextMatchDescriptor(0, 0, input);
 			var chocolateEnd = 0;
 
 			foreach (var styledLocation in targets)
 			{
-				var currentLocation = styledLocation.Value;
-
+				var currentLocation = styledLocation.Item2;
 				if (previousLocation.EndIndex > currentLocation.Index)
 				{
 					previousLocation = new TextMatchDescriptor(0, 0, input);
@@ -100,31 +103,27 @@ namespace CultureWars.Core.FluentConsole.Annotating
 
 				var vanilla = input.Substring(vanillaStart, vanillaEnd - vanillaStart);
 
-				var chocolate = _matchFoundHandlers[styledLocation.Key]
+				var chocolate = _matchFoundHandlers[styledLocation.Item1]
 					.Invoke(
 						input, 
-						styledLocation.Value,
+						styledLocation.Item2,
 						input.Substring(
 							chocolateStart,
 							chocolateEnd - chocolateStart));
 
 				if (vanilla != "")
-				{
-					styleMap.Add(new KeyValuePair<string, Color>(vanilla, _styleSheet.UnstyledColor));
-				}
+					styleMap.Add((vanilla, _styleSheet.UnstyledColor));
 
 				if (chocolate != "")
-				{
-					styleMap.Add(new KeyValuePair<string, Color>(chocolate, styledLocation.Key.Color));
-				}
-
+					styleMap.Add((chocolate, styledLocation.Item1.Color));
+				
 				previousLocation = currentLocation.Prototype();
 			}
 
 			if (chocolateEnd < input.Length)
 			{
-				string vanilla = input.Substring(chocolateEnd, input.Length - chocolateEnd);
-				styleMap.Add(new KeyValuePair<string, Color>(vanilla, _styleSheet.UnstyledColor));
+				var vanilla = input.Substring(chocolateEnd, input.Length - chocolateEnd);
+				styleMap.Add((vanilla, _styleSheet.UnstyledColor));
 			}
 
 			return styleMap;

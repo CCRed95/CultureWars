@@ -41,7 +41,7 @@ namespace CultureWars.Core.FluentConsole
 #endif
 
 		private static void MapToScreen(
-			IEnumerable<KeyValuePair<string, Color>> styleMap,
+			IEnumerable<(string, Color)> styleMap,
 			string trailer)
 		{
 #if !NET40
@@ -57,17 +57,17 @@ namespace CultureWars.Core.FluentConsole
 							{
 								System.Console.ForegroundColor
 									= colorManager.GetConsoleColor(
-										textChunk.Value);
+										textChunk.Item2);
 
 								if (writeCount == styleMap.Count())
 								{
 									//Debug.Write(textChunk.Key + trailer);
-									System.Console.Write(textChunk.Key + trailer);
+									System.Console.Write(textChunk.Item1 + trailer);
 								}
 								else
 								{
 									//Debug.Write(textChunk.Key);
-									System.Console.Write(textChunk.Key);
+									System.Console.Write(textChunk.Item1);
 								}
 								writeCount++;
 							}

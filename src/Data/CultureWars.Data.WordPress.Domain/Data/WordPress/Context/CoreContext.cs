@@ -1,4 +1,4 @@
-﻿using CultureWars.Data.Extensions;
+﻿using CultureWars.Core.Data.Extensions;
 using CultureWars.Data.WordPress.Domain;
 using CultureWars.Data.WordPress.Maps;
 using Microsoft.EntityFrameworkCore;

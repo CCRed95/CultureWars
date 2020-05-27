@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using Ccr.Std.Core.Extensions;
 using CultureWars.API.GoogleArchives.JsonParsing;
 using CultureWars.API.InternetArchive;
@@ -11,12 +10,9 @@ using CultureWars.API.InternetArchive.Query;
 using CultureWars.API.Web;
 using CultureWars.Data.Export.WordPress;
 using CultureWars.Data.Export.WordPress.Domain;
-using CultureWars.Data.Export.WordPress.Domain.Infrastructure;
 using CultureWars.Data.Export.WordPress.Domain.Infrastructure.Builders;
 using CultureWars.Data.Export.WordPress.Domain.ValueEnums;
 using CultureWars.Data.Export.WordPress.XmlWriter;
-using CultureWars.Data.WordPress.Context;
-using CultureWars.Media.Conversion;
 using CultureWars.Terminal.Utilities;
 
 namespace CultureWars.Terminal
@@ -47,19 +43,21 @@ namespace CultureWars.Terminal
 				$@"\XmlGenTest6.xml";
 
 			var outputFileInfo = new FileInfo(outputFilePath);
-			using var consoleStreamWriter = new ConsoleStreamWriter(outputFileInfo.FullName, false);
+
+			using var consoleStreamWriter = new ConsoleStreamWriter(
+				outputFileInfo.FullName, false);
 
 			var writer = new XmlStreamWriter(consoleStreamWriter);
 			writer.WithDeclaration(FXDeclaration.Get(_xmlVersion, "utf-8"))
-						.WithNamespace(excerptNs)
-						.WithNamespace(contentNs)
-						.WithNamespace(wfwNs)
-						.WithNamespace(dcNs)
-						.WithNamespace(wpNs);
+				.WithNamespace(excerptNs)
+				.WithNamespace(contentNs)
+				.WithNamespace(wfwNs)
+				.WithNamespace(dcNs)
+				.WithNamespace(wpNs);
 
 			writer.WriteStartElement("rss")
-						.WriteStartElement("channel")
-						.WriteInlineElement(wpNs, "wxr_version", $"{_wxrVersion:0.0}");
+				.WriteStartElement("channel")
+				.WriteInlineElement(wpNs, "wxr_version", $"{_wxrVersion:0.0}");
 			
 			foreach (var tag in WPTerm.AllTags)
 			{
@@ -74,15 +72,14 @@ namespace CultureWars.Terminal
 			foreach (var category in WPCategory.AllCategories)
 			{
 				writer.WriteStartElement(wpNs, "category")
-							.WriteInlineCDataElement(wpNs, "cat_name", category.CategoryName)
-							.WriteInlineCDataElement(wpNs, "category_nicename", category.CategoryNiceName)
-							.WriteInlineElement(wpNs, "category_parent", "0")
-							.WriteEndElement();
-
+					.WriteInlineCDataElement(wpNs, "cat_name", category.CategoryName)
+					.WriteInlineCDataElement(wpNs, "category_nicename", category.CategoryNiceName)
+					.WriteInlineElement(wpNs, "category_parent", "0")
+					.WriteEndElement();
 			}
 
 			writer.WriteEndElement()
-						.WriteEndElement();
+				.WriteEndElement();
 		}
 
 		public static IEnumerable<WPPostItem> GetWPPosts()
@@ -144,11 +141,13 @@ namespace CultureWars.Terminal
 						.ParseJsonYouTubeMetadata(localJsonFilePath);
 
 					var flattenedMetadata = new YouTubeVideoFlattenedMetadata(jsonResultMetadata);
-					var encodedFileNameCharArray = file.Title
-																		.ToLower()
-																		.Replace(" ", "-")
-																		.Where(t => t.IsLetterOrDigit() || t == '-')
-																		.ToArray();
+					var encodedFileNameCharArray = file
+						.Title
+						.ToLower()
+						.Replace(" ", "-")
+						.Where(t => t.IsLetterOrDigit() || t == '-')
+						.ToArray();
+
 					var videoThumbnail =
 						AlternativeThumbnailAssociator.GetPrimaryAssociatedThumbnailFileUrl(file);
 
@@ -166,6 +165,7 @@ namespace CultureWars.Terminal
 						{
 							var titleCase = tag.ToTitleCase();
 							var term = WPTerm.FromFriendlyNameOrNull(titleCase);
+
 							if (term != null)
 								terms.Add(term);
 							else
@@ -176,41 +176,41 @@ namespace CultureWars.Terminal
 					}
 
 					var postItem = WPPostItem
-												 .Builder
-												 .WithPostID(thumbnailIndex)
-												 .WithPostName(encodedFileName)
-												 .WithPostTitle(flattenedMetadata.Title)
-												 .WithPostLink(linkPath)
-												 .WithPostStatus(WPStatus.Publish)
-												 .WithAuthor(WPAuthor.EMichaelJones)
-												 .WithPublicationDate(flattenedMetadata.VideoPublishedDate)
-												 .WithPostDate(flattenedMetadata.VideoPublishedDate)
-												 .WithPostDateGmt(flattenedMetadata.VideoPublishedDate)
-												 .WithCategories(
-													 WPCategory.CensoredVideos)
-												 .WithTerms(terms.ToArray())
-												 .WithPostComments(new List<WPPostComment>())
-												 .WithPostContent(
-													 $@"<iframe src=""https://archive.org/download/{archiveItem.Identifier}/{file.FileName}"" width=""640"" height=""480"" frameborder=""0"" webkitallowfullscreen=""true"" mozallowfullscreen=""true"" allowfullscreen=""""></iframe>")
-												 .WithPostExcerpt(flattenedMetadata.Description)
-												 .WithPostThumbnailId(thumbnailIndex + 1)
-												 .Build();
+						.Builder
+						.WithPostID(thumbnailIndex)
+						.WithPostName(encodedFileName)
+						.WithPostTitle(flattenedMetadata.Title)
+						.WithPostLink(linkPath)
+						.WithPostStatus(WPStatus.Publish)
+						.WithAuthor(WPAuthor.EMichaelJones)
+						.WithPublicationDate(flattenedMetadata.VideoPublishedDate)
+						.WithPostDate(flattenedMetadata.VideoPublishedDate)
+						.WithPostDateGmt(flattenedMetadata.VideoPublishedDate)
+						.WithCategories(
+							WPCategory.CensoredVideos)
+						.WithTerms(terms.ToArray())
+						.WithPostComments(new List<WPPostComment>())
+						.WithPostContent(
+							$@"<iframe src=""https://archive.org/download/{archiveItem.Identifier}/{file.FileName}"" width=""640"" height=""480"" frameborder=""0"" webkitallowfullscreen=""true"" mozallowfullscreen=""true"" allowfullscreen=""""></iframe>")
+						.WithPostExcerpt(flattenedMetadata.Description)
+						.WithPostThumbnailId(thumbnailIndex + 1)
+						.Build();
 
 					var thumbnailItem = WPAttachmentItem
-					                    .Builder
-					                    .WithPostID(thumbnailIndex + 1)
-					                    .WithPostName($"")
-					                    .WithPostLink($"")
-					                    .WithPostTitle($"")
-					                    .WithAttachmentUrl($"{videoThumbnail}")
-					                    .WithStatus("inherit")
-					                    .WithAuthor(WPAuthor.EMichaelJones)
-															.WithPublicationDate(flattenedMetadata.VideoPublishedDate)
-					                    .WithPostDate(flattenedMetadata.VideoPublishedDate)
-					                    .WithPostDateGmt(flattenedMetadata.VideoPublishedDate)
-					                    .WithPostContent($"")
-					                    .WithPostExcerpt($"")
-					                    .Build();
+						.Builder
+						.WithPostID(thumbnailIndex + 1)
+						.WithPostName($"")
+						.WithPostLink($"")
+						.WithPostTitle($"")
+						.WithAttachmentUrl($"{videoThumbnail}")
+						.WithStatus("inherit")
+						.WithAuthor(WPAuthor.EMichaelJones)
+						.WithPublicationDate(flattenedMetadata.VideoPublishedDate)
+						.WithPostDate(flattenedMetadata.VideoPublishedDate)
+						.WithPostDateGmt(flattenedMetadata.VideoPublishedDate)
+						.WithPostContent($"")
+						.WithPostExcerpt($"")
+						.Build();
 
 					yield return postItem;
 					thumbnailIndex += 2;

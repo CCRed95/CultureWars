@@ -109,7 +109,7 @@ namespace CultureWars.API.YouTube
 //		Task DownloadMediaStreamAsync(MediaStreamInfo info, Stream output,
 	//			IProgress<double> progress = null, CancellationToken cancellationToken = default);
 
-#if NETSTANDARD2_0 || NET45
+#if NETSTANDARD2_0 || NETSTANDARD2_1 || NET45
 
 		/// <summary>
 		/// Downloads the stream associated with given metadata to a file.
@@ -126,15 +126,15 @@ namespace CultureWars.API.YouTube
 		/// <summary>
 		/// Gets the closed caption track associated with given metadata.
 		/// </summary>
-	//	Task<ClosedCaptionTrack> GetClosedCaptionTrackAsync(ClosedCaptionTrackInfo info);
+		//	Task<ClosedCaptionTrack> GetClosedCaptionTrackAsync(ClosedCaptionTrackInfo info);
 
 		/// <summary>
 		/// Downloads the closed caption track associated with given metadata to the output stream.
 		/// </summary>
-	//	Task DownloadClosedCaptionTrackAsync(ClosedCaptionTrackInfo info, Stream output,
+		//	Task DownloadClosedCaptionTrackAsync(ClosedCaptionTrackInfo info, Stream output,
 		//		IProgress<double> progress = null, CancellationToken cancellationToken = default);
 
-#if NETSTANDARD2_0 || NET45
+#if NETSTANDARD2_0 || NETSTANDARD2_1 || NET45
 
 		/// <summary>
 		/// Downloads the closed caption track associated with given metadata to a file.

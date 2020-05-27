@@ -3,15 +3,15 @@
 namespace CultureWars.Core.FluentConsole.Exceptions
 {
 	/// <summary>
-	///		Encapsulates information relating to exceptions thrown while making calls to the console via
-	///		the Win32 API.
+	///	Encapsulates information relating to exceptions thrown while making calls to the console via
+	///	the Win32 API.
 	/// </summary>
 	public sealed class ConsoleAccessException
 		: Exception
 	{
 		/// <summary>
-		///		Encapsulates information relating to exceptions thrown while making calls to the console
-		///		via the Win32 API.
+		///	Encapsulates information relating to exceptions thrown while making calls to the console
+		///	via the Win32 API.
 		/// </summary>
 		public ConsoleAccessException()
 			: base(

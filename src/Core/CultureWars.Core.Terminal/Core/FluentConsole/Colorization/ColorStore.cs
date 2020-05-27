@@ -6,29 +6,29 @@ using System.Linq;
 namespace CultureWars.Core.FluentConsole.Colorization
 {
 	/// <summary>
-	///		Stores and manages the assignment of Color objects to ConsoleColor objects.
+	///	Stores and manages the assignment of Color objects to ConsoleColor objects.
 	/// </summary>
 	public sealed class ColorStore
 	{
 		/// <summary>
-		///		A map from Color to ConsoleColor.
+		///	A map from Color to ConsoleColor.
 		/// </summary>
 		public ConcurrentDictionary<Color, ConsoleColor> Colors { get; }
 
 		/// <summary>
-		///		A map from ConsoleColor to Color.
+		///	A map from ConsoleColor to Color.
 		/// </summary>
 		public ConcurrentDictionary<ConsoleColor, Color> ConsoleColors { get; }
 
 		
 		/// <summary>
-		///		Manages the assignment of System.Drawing.Color objects to ConsoleColor objects.
+		///	Manages the assignment of System.Drawing.Color objects to ConsoleColor objects.
 		/// </summary>
 		/// <param name="colorMap">
-		///		The Dictionary the ColorStore should use to key Color objects to ConsoleColor objects.
+		///	The Dictionary the ColorStore should use to key Color objects to ConsoleColor objects.
 		/// </param>
 		/// <param name="consoleColorMap">
-		///		The Dictionary the ColorStore should use to key ConsoleColor objects to Color objects.
+		///	The Dictionary the ColorStore should use to key ConsoleColor objects to Color objects.
 		/// </param>
 		public ColorStore(
 			ConcurrentDictionary<Color, ConsoleColor> colorMap,
@@ -56,10 +56,10 @@ namespace CultureWars.Core.FluentConsole.Colorization
 
 
 		/// <summary>
-		///		Adds a new Color to the ColorStore.
+		///	Adds a new Color to the ColorStore.
 		/// </summary>
 		/// <param name="oldColor">
-		///		The ConsoleColor to be replaced by the new Color.
+		///	The ConsoleColor to be replaced by the new Color.
 		/// </param>
 		/// <param name="newColor">
 		/// The Color to be added to the ColorStore.
@@ -73,16 +73,16 @@ namespace CultureWars.Core.FluentConsole.Colorization
 		}
 
 		/// <summary>
-		///		Replaces one Color in the ColorStore with another.
+		///	Replaces one Color in the ColorStore with another.
 		/// </summary>
 		/// <param name="oldColor">
-		///		The color to be replaced.
+		///	The color to be replaced.
 		/// </param>
 		/// <param name="newColor">
-		///		The replacement color.
+		///	The replacement color.
 		/// </param>
 		/// <returns>
-		///		The ConsoleColor key of the Color object that was replaced in the ColorStore.
+		///	The ConsoleColor key of the Color object that was replaced in the ColorStore.
 		/// </returns>
 		public ConsoleColor Replace(
 			Color oldColor, 
@@ -101,13 +101,13 @@ namespace CultureWars.Core.FluentConsole.Colorization
 		}
 
 		/// <summary>
-		///		Notifies the caller whether or not the specified Color needs to be added to the ColorStore.
+		///	Notifies the caller whether or not the specified Color needs to be added to the ColorStore.
 		/// </summary>
 		/// <param name="color">
-		///		The Color to be checked for membership.
+		///	The Color to be checked for membership.
 		/// </param>
 		/// <returns>
-		///		Returns true if the ColorStore already contains the specified Color.
+		///	Returns true if the ColorStore already contains the specified Color.
 		/// </returns>
 		public bool RequiresUpdate(Color color)
 		{

@@ -1,4 +1,5 @@
-﻿using CultureWars.Core.Extensions;
+﻿using Ccr.Std.Core.Extensions;
+using CultureWars.Core.Extensions;
 using JetBrains.Annotations;
 
 namespace CultureWars.Data.Export.WordPress.XmlWriter

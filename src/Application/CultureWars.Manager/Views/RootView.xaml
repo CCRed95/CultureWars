@@ -1,0 +1,421 @@
+﻿<UserControl x:Class="CultureWars.Manager.Views.RootView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CultureWars.Manager.ViewModels"
+             xmlns:models="clr-namespace:CultureWars.Manager.Models"
+             xmlns:extensions="clr-namespace:CultureWars.Manager.Markup.Extensions"
+             xmlns:valueConverters="clr-namespace:CultureWars.Manager.Markup.ValueConverters"
+             xmlns:m="clr-namespace:CultureWars.Manager"
+             xmlns:c="clr-namespace:Ccr.MaterialDesign.CodeEditors;assembly=Ccr.MaterialDesign"
+             cal:Bind.AtDesignTime="True"
+             d:DataContext="{d:DesignInstance vm:RootViewModel, IsDesignTimeCreatable=True}"
+             Designer.Orientation="Landscape"
+             Designer.Viewport="HD1080"
+             mc:Ignorable="d"
+						 MDH.Swatch="DeepPurple"
+						 cal:Message.Attach="[Event Unloaded] = [Action OnViewUnloaded]">
+	<UserControl.Resources>
+		<Style TargetType="ContentControl" x:Key="ModalPopupContentControl">
+			<Setter Property="Opacity" Value="0"/>
+			<Setter Property="IsHitTestVisible" Value="False"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+			<Setter Property="RenderTransform">
+				<Setter.Value>
+					<TransformGroup>
+						<ScaleTransform CenterX=".5" CenterY=".5"/>
+						<TranslateTransform Y="0"/>
+					</TransformGroup>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style TargetType="ContentControl" x:Key="SimpleModalPopupContentControl">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+			<Setter Property="RenderTransform">
+				<Setter.Value>
+					<TransformGroup>
+						<ScaleTransform CenterX=".5" CenterY=".5"/>
+						<TranslateTransform Y="0"/>
+					</TransformGroup>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<!--<DataTemplate x:Key="ExpanderDataTemplate" DataType="models:ExpanderItemSelection">
+			<Grid Height="40"
+						Margin="10 0 0 0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="20"/>
+					<ColumnDefinition Width="50"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Grid>
+					<Ellipse Width="10" 
+									 Height="10"
+									 Shadow.Level="2"
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Center">
+						<Ellipse.Fill>
+							<Binding RelativeSource="{RelativeSource TemplatedParent}"
+											 Path="(MDH.Theme).A200"/>
+						</Ellipse.Fill>
+					</Ellipse>
+				</Grid>
+
+				<Viewbox Grid.Column="1"
+								 Margin="7">
+					<Icon Kind="{Binding Icon}"
+								IconAssist.Scale="1">
+						<Icon.Foreground>
+							<Binding RelativeSource="{RelativeSource TemplatedParent}"
+											 Path="(MDH.Theme).P300"/>
+						</Icon.Foreground>
+					</Icon>
+				</Viewbox>
+
+				<Label Grid.Column="2"
+							 HorizontalContentAlignment="Left"
+							 Style="{StaticResource t13pBody1}"
+							 FontWeight="Light"
+							 Content="{Binding Title}">
+					<Label.Foreground>
+						<Binding RelativeSource="{RelativeSource TemplatedParent}"
+										 Path="(MDH.Theme).P100"/>
+					</Label.Foreground>
+				</Label>
+			</Grid>
+		</DataTemplate>-->
+		
+		<DataTemplate x:Key="ExpanderDataTemplate" DataType="models:ExpanderItemSelection">
+			<Grid Height="40"
+						Margin="10 0 0 0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="20"/>
+					<ColumnDefinition Width="50"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Grid>
+					<Ellipse Width="10" 
+									 Height="10"
+									 Shadow.Level="2"
+									 VerticalAlignment="Center"
+									 HorizontalAlignment="Center"
+									 Fill="{Binding Swatch.P600}"/>
+				</Grid>
+
+				<Viewbox Grid.Column="1"
+								 Margin="7">
+					<Icon Kind="{Binding Icon}"
+								IconAssist.Scale="1"
+								Shadow.Level="3"
+								Foreground="{Binding Swatch.A200}"/>
+				</Viewbox>
+
+				<Label Grid.Column="2"
+							 HorizontalContentAlignment="Left"
+							 Style="{StaticResource t13pBody1}"
+							 FontWeight="Normal"
+							 Content="{Binding Title}"
+							 Foreground="{Binding Swatch.A100}">
+				</Label>
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate x:Key="ExpanderHeaderDataTemplate">
+			<Grid Height="40"
+						Margin="5 0 0 0">
+				<Label HorizontalContentAlignment="Left"
+							 Style="{StaticResource _t16pSubheadMed}"
+							 FontWeight="Regular"
+							 Content="{Binding}"/>
+			</Grid>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<Grid Background="{StaticResource MDH.Palette.Grey.900}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="100"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<!--<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup Name="LoginViewStates">
+				<VisualState Name="LoginViewContractedStates">
+					<Storyboard>
+						<SimpleContractElementStoryboardTemplate TargetName="LoginView"/>
+
+						<DoubleAnimation Storyboard.TargetName="PART_Fader"
+														 Storyboard.TargetProperty="Opacity"
+														 To="0"
+														 Duration="0:0:0.3"/>
+					</Storyboard>
+				</VisualState>
+				<VisualState Name="LoginViewExpandedStates">
+					<Storyboard>
+						<SimpleExpandElementStoryboardTemplate TargetName="LoginView"/>
+
+						<DoubleAnimation Storyboard.TargetName="PART_Fader"
+														 Storyboard.TargetProperty="Opacity"
+														 To=".6"
+														 Duration="0:0:0.3"/>
+					</Storyboard>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>-->
+
+		<Grid Panel.ZIndex="900"
+					Background="{extensions:MDDarken {StaticResource MDH.Palette.Purple.800}, 0.1}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Grid.Column="1"
+									Orientation="Horizontal">
+				<Button Style="{StaticResource MDH.Controls.Buttons.PathButton.DarkSurface}"
+								Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+					<Viewbox>
+						<Icon Foreground="White" Kind="Wifi"/>
+					</Viewbox>
+				</Button>
+
+				<Button Style="{StaticResource MDH.Controls.Buttons.PathButton.DarkSurface}"
+								Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+					<Viewbox>
+						<Icon Foreground="White" Kind="Signal4g"/>
+					</Viewbox>
+				</Button>
+			</StackPanel>
+		</Grid>
+
+		<Grid Grid.Row="1"
+					Panel.ZIndex="1000"
+					Shadow.Level="3.5">
+			<Grid.Background>
+				<MultiBinding Converter="{valueConverters:MDBlendConverter}"
+											ConverterParameter="0.9">
+					<Binding Source="{StaticResource MDH.Palette.Blue.500}"/>
+					<Binding Source="{StaticResource MDH.Palette.Purple.700}"/>
+				</MultiBinding>
+
+				<!--<extensions:MDDarken {Binding RelativeSource="{RelativeSource TemplatedParent}"
+															Path="(MDH.Theme).P800"}/>-->
+
+			</Grid.Background>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<Button Style="{StaticResource MDH.Controls.Buttons.PathButton.DarkSurface}"
+							Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+				<Icon Foreground="White" Kind="Menu"/>
+			</Button>
+
+			<Label Style="{StaticResource t24pHeadline}"
+						 Grid.Column="1"
+						 Content="Culture Wars Manager"
+						 FontWeight="Light"/>
+
+			<Button Style="{StaticResource MDH.Controls.Buttons.PathButton.DarkSurface}"
+							Grid.Column="3"
+							Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+				<Icon Foreground="White" Kind="Database"/>
+			</Button>
+
+			<Button Style="{StaticResource MDH.Controls.Buttons.PathButton.DarkSurface}"
+							Grid.Column="4"
+							Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+				<Icon Foreground="White" Kind="ChartTimeline"/>
+			</Button>
+		</Grid>
+
+		<Grid Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="350"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+
+			<Grid Panel.ZIndex="1000" 
+						Background="{extensions:MDDarken {StaticResource MDH.Palette.BlueGrey.950}, 0.2}"
+						Shadow.Level="3">
+				<StackPanel>
+					<StackPanel.Resources>
+						<Style TargetType="Expander" BasedOn="{StaticResource MaterialDesignExpander}">
+							<Setter Property="IsExpanded" Value="True"/>
+							<Setter Property="Foreground" Value="White"/>
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="HeaderTemplate" Value="{StaticResource ExpanderHeaderDataTemplate}"/>
+						</Style>
+					</StackPanel.Resources>
+					
+					<Expander Header="Magazine Processing"
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Foreground="White"
+										Background="Transparent"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding MagazineProcessingTasks}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+
+					<Expander Header="Linguistic Processing" 
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Foreground="White"
+										Background="Transparent"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding NaturalLanguageProcessingTasks}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+
+					<Expander Header="Speech Recognition" 
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Background="Transparent"
+										Foreground="White"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding SpeechRecognitionAnalyticsTasks}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+					
+					<Expander Header="Literary Publishing" 
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Background="Transparent"
+										Foreground="White"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding LiteraryPublishingTasks}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+					
+					<Expander Header="Media Publishing" 
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Background="Transparent"
+										Foreground="White"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding MediaPublishingTasks}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+					
+					<Expander Header="Entity Library" 
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Background="Transparent"
+										Foreground="White"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding EntityLibraryItems}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+					
+					<Expander Header="Content Library" 
+										IsExpanded="True"
+										Style="{StaticResource MaterialDesignExpander}"
+										Background="Transparent"
+										Foreground="White"
+										HeaderTemplate="{StaticResource ExpanderHeaderDataTemplate}">
+						<ListView ItemsSource="{Binding ContentLibraryItems}"
+											Background="Transparent"
+											ItemTemplate="{StaticResource ExpanderDataTemplate}"
+											SelectedItem="{Binding SelectedMenuItem, Mode=OneWayToSource}">
+						</ListView>
+					</Expander>
+				</StackPanel>
+			</Grid>
+
+			<Grid Column="1" Background="#030303">
+				<ContentControl x:Name="TextSummarizerView"/>
+				<!--<TextBox AcceptsReturn="True"
+								 AcceptsTab="True"
+								 FontFamily="Consolas" 
+								 FontSize="14pt"
+								 Background="Transparent"
+								 Foreground="White"
+								 BorderBrush="Transparent"
+								 BorderThickness="0"
+								 Text="{Binding SmmryApiResponse}"/>-->
+
+				<!--<RichTextBox Background="Transparent"
+										 BorderBrush="Transparent"
+										 Margin="30 20"
+										 BorderThickness="0">
+					<RichTextBox.Document>
+						<FlowDocument FontFamily="Consolas" FontSize="14pt" LineHeight="4pt">
+							<FlowDocument.Blocks>
+								<Paragraph>
+									<Paragraph.Inlines>
+										<Run Text="&lt;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/><Run 
+												 Text="RootNode" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperClassIdentifier}"/><Run
+												 Text="&gt;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/>
+									</Paragraph.Inlines>
+								</Paragraph>
+								<Paragraph TextIndent="16pt">
+									<Paragraph.Inlines>
+										<Run Text="&lt;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/><Run
+												 Text="ChildNode" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperClassIdentifier}"/><Run
+												 Text=" Attribute" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperMethodIdentifier}"/><Run
+												 Text="=" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/><Run
+												 Text="&quot;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/><Run
+												 Text="SampleText" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperFieldIdentifier}"/><Run
+												 Text="&quot;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/><Run 
+												 Text="/&gt;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/>
+									</Paragraph.Inlines>
+								</Paragraph>
+								<Paragraph>
+									<Paragraph.Inlines>
+										<Run Text="&lt;/" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/><Run 
+												 Text="RootNode" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperClassIdentifier}"/><Run 
+												 Text="&gt;" CodeStyle.Classification="{x:Static c:CodeClassification.ReSharperBraceOutline}"/>
+									</Paragraph.Inlines>
+								</Paragraph>
+							</FlowDocument.Blocks>
+						</FlowDocument>
+					</RichTextBox.Document>
+				</RichTextBox>-->
+			</Grid>
+		</Grid>
+
+
+		<!--<Grid RowSpan="3"
+					Panel.ZIndex="1000">
+			<Grid x:Name="PART_Fader" 
+						Background="Black" 
+						Opacity="0"
+						IsHitTestVisible="False"/>
+			
+			<ContentControl x:Name="LoginView"
+											Style="{StaticResource ModalPopupContentControl}"/>
+		</Grid>-->
+	</Grid>
+</UserControl>

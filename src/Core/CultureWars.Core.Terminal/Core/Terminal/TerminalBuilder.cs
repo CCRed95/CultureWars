@@ -227,20 +227,12 @@ namespace CultureWars.Core.Terminal
 		}
 	}
 
-	public class CommandParser
-	{
-		public CommandDeclaration ParseCommand(
-			string commandText)
-		{
-			throw new NotImplementedException();
-		}
-	}
-
 	public class CommandDeclaration
 	{
 		public string CommandName { get; }
 
-		private readonly CommandOption[] commandOptions;
+		public CommandOption[] CommandOptions { get; }
+
 
 		public static CommandBuilder Builder
 		{
@@ -251,9 +243,9 @@ namespace CultureWars.Core.Terminal
 			string commandName,
 			params CommandOption[] _commandOptions)
 		{
-
+			CommandName = commandName;
+			CommandOptions = _commandOptions;
 		}
-
 	}
 }
 

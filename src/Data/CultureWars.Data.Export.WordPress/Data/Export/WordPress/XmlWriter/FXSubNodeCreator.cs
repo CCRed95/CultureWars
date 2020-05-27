@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ccr.Std.Core.Extensions;
 using CultureWars.Core.Extensions;
 
 namespace CultureWars.Data.Export.WordPress.XmlWriter

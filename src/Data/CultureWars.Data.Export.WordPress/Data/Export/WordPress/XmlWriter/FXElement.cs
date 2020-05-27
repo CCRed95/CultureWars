@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using CultureWars.Core.Extensions;
+using Ccr.Std.Core.Extensions;
 using JetBrains.Annotations;
 
 namespace CultureWars.Data.Export.WordPress.XmlWriter

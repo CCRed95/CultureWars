@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CultureWars</RootNamespace>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ccr.Std.Core" Version="1.0.0" />
+    <PackageReference Include="Ccr.Std.Core" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>

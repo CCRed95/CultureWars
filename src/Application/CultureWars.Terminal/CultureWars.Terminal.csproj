@@ -1,20 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>CultureWars</RootNamespace>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject />
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\APIs\CultureWars.API.CultureWars\CultureWars.API.CultureWars.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API.Google.Cloud.Speech\CultureWars.API.Google.Cloud.Speech.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API.InternetArchive\CultureWars.API.InternetArchive.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API.YouTube\CultureWars.API.YouTube.csproj" />
     <ProjectReference Include="..\..\APIs\CultureWars.API\CultureWars.API.csproj" />
+    <ProjectReference Include="..\..\Core\CultureWars.Core.Terminal\CultureWars.Core.Terminal.csproj" />
+    <ProjectReference Include="..\..\Data\CultureWars.Core.Data\CultureWars.Core.Data.csproj" />
+    <ProjectReference Include="..\..\Data\CultureWars.Data.Domain\CultureWars.Data.Domain.csproj" />
     <ProjectReference Include="..\..\Data\CultureWars.Data.Export.WordPress\CultureWars.Data.Export.WordPress.csproj" />
     <ProjectReference Include="..\..\Data\CultureWars.Data.WordPress.Domain\CultureWars.Data.WordPress.Domain.csproj" />
+    <ProjectReference Include="..\..\Data\CultureWars.Data\CultureWars.Data.csproj" />
     <ProjectReference Include="..\..\Media\CultureWars.Media\CultureWars.Media.csproj" />
   </ItemGroup>
 

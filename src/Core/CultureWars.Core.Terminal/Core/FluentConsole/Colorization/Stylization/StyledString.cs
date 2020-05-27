@@ -4,19 +4,19 @@ using System.Drawing;
 namespace CultureWars.Core.FluentConsole.Colorization.Stylization
 { 
 	/// <summary>
-	///		A string encoded with style
+	///	A string encoded with style.
 	/// </summary>
 	public sealed class StyledString
 		: IEquatable<StyledString>
 	{
 		/// <summary>
-		/// The one-dimensional representation of the StyledString.  Maps 1:1 with System.String.
+		/// The one-dimensional representation of the StyledString. Maps 1:1 with System.String.
 		/// </summary>
 		public string AbstractValue { get; }
 
 		/// <summary>
-		/// The n-dimensional (n &le; 2, in this case) representation of the StyledString.  
-		/// In the case of FIGlet fonts, for example, this would be the string's two-dimensional FIGlet representation.
+		/// The n-dimensional (n &le; 2, in this case) representation of the StyledString. In the case
+		/// of FIGlet fonts, for example, this would be the string's two-dimensional FIGlet representation.
 		/// </summary>
 		public string ConcreteValue { get; }
 
@@ -68,10 +68,13 @@ namespace CultureWars.Core.FluentConsole.Colorization.Stylization
 			}
 
 			return AbstractValue == other.AbstractValue
-			       && ConcreteValue == other.ConcreteValue;
+				&& ConcreteValue == other.ConcreteValue;
 		}
 
-		public override bool Equals(object obj) => Equals(obj as StyledString);
+		public override bool Equals(object obj)
+		{
+			return Equals(obj as StyledString);
+		}
 
 		// Does not take styling information into account...and it needs to be taken into account.
 		public override int GetHashCode()
@@ -88,6 +91,9 @@ namespace CultureWars.Core.FluentConsole.Colorization.Stylization
 		/// Returns the StyledString's concrete representation.
 		/// </summary>
 		/// <returns></returns>
-		public override string ToString() => ConcreteValue;
+		public override string ToString()
+		{
+			return ConcreteValue;
+		}
 	}
 }

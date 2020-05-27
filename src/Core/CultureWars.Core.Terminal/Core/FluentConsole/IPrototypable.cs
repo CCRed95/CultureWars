@@ -3,13 +3,15 @@
 	/// <summary>
 	/// Exposes methods used for creating (potentially inexact) copies of objects.
 	/// </summary>
-	/// <typeparam name="TSelf"></typeparam>
+	/// <typeparam name="TSelf">
+	/// </typeparam>
 	public interface IPrototypable<TSelf>
 	{
 		/// <summary>
-		///		Returns a potentially inexact copy of the target object.
+		///	Returns a potentially inexact copy of the target object.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>
+		/// </returns>
 		TSelf Prototype();
 	}
 }

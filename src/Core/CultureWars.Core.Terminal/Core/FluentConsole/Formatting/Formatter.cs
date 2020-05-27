@@ -5,13 +5,16 @@ using JetBrains.Annotations;
 namespace CultureWars.Core.FluentConsole.Formatting
 {
 	/// <summary>
-	///		Exposes properties representing an object and its color. This is a convenience wrapper
-	///		around the StyleClass type, so you don't have to provide the type argument each time.
+	///	Exposes properties representing an object and its color. This is a convenience wrapper
+	///	around the StyleClass type, so you don't have to provide the type argument each time.
 	/// </summary>
 	public sealed class Formatter
 	{
+		private readonly StyleClass<string> _backingClass;
+
+
 		/// <summary>
-		///		The object to be styled.
+		///	The object to be styled.
 		/// </summary>
 		public object Target
 		{
@@ -19,25 +22,23 @@ namespace CultureWars.Core.FluentConsole.Formatting
 		}
 
 		/// <summary>
-		///		The color to be applied to the target.
+		///	The color to be applied to the target.
 		/// </summary>
 		public Color Color
 		{
 			get => _backingClass.Color;
 		}
-
-		private readonly StyleClass<string> _backingClass;
-
+		
 
 		/// <summary>
-		///		Exposes properties representing an object and its color.  This is a convenience wrapper
-		///		around the StyleClass type, so you don't have to provide the type argument each time.
+		///	Exposes properties representing an object and its color.  This is a convenience wrapper
+		///	around the StyleClass type, so you don't have to provide the type argument each time.
 		/// </summary>
 		/// <param name="target">
-		///		The object to be styled.
+		///	The object to be styled.
 		/// </param>
 		/// <param name="color">
-		///		The color to be applied to the target.
+		///	The color to be applied to the target.
 		/// </param>
 		public Formatter(
 			[RegexPattern] string target, 

@@ -11,6 +11,7 @@ namespace CultureWars.Terminal
 			var directorySource = new DirectoryInfo(
 				@"X:\media\shows\emichaeljones\youtube\videos\thumbs\");
 
+
 			foreach (var directoryInfo in directorySource.GetDirectories())
 			{
 				foreach (var videoInfo in directoryInfo.GetFiles("*.mp4"))

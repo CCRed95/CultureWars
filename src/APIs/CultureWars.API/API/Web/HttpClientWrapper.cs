@@ -12,7 +12,10 @@ namespace CultureWars.API.Web
 
     public HttpClientWrapper()
     {
-      Client = new HttpClient();
+      Client = new HttpClient()
+      {
+        Timeout = TimeSpan.FromSeconds(10)
+      };
       Client
         .DefaultRequestHeaders
         .Add(

@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace CultureWars.Data.Extensions
+namespace CultureWars.Core.Data.Extensions
 {
 	public static class RelationalModelBuilderExtensions
 	{

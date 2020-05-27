@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Speech.V1;
-using Google.Protobuf;
 using Grpc.Auth;
 
 namespace CultureWars.API.Google.Cloud.Speech
@@ -24,11 +21,15 @@ namespace CultureWars.API.Google.Cloud.Speech
 				var googleCredential = GoogleCredential
 					.FromStream(credentialsStream);
 
-				var channel = new Grpc.Core.Channel(
-					SpeechClient.DefaultEndpoint.Host,
-					googleCredential.ToChannelCredentials());
+				//var channel = new Grpc.Core.Channel(
+				//	SpeechClient.DefaultEndpoint,//.Host,
+				//	googleCredential.ToChannelCredentials());
 
-				var speech = SpeechClient.Create(channel);
+				var client = new SpeechClientBuilder
+				{
+					ChannelCredentials = googleCredential.ToChannelCredentials()
+				};
+				var speech = client.Build();
 
 				var recognitionAudio = RecognitionAudio
 					.FromStorageUri(gsLink);

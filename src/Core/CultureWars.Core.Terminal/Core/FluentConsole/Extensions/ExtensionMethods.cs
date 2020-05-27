@@ -57,9 +57,15 @@ namespace CultureWars.Core.FluentConsole.Extensions
 		/// Takes a single object (which could be a 1-dimensional array) and returns it (or, potentially,
 		/// all of its elements) as an element of an array of the corresponding type.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="input">The object which will be transformed into an array.</param>
-		/// <returns>An array of a certain type, as dynamic.</returns>
+		/// <typeparam name="T">
+		///
+		/// </typeparam>
+		/// <param name="input">
+		/// The object which will be transformed into an array.
+		/// </param>
+		/// <returns>
+		/// An array of a certain type, as dynamic.
+		/// </returns>
 		internal static dynamic Normalize<T>(
 			this T input)
 		{

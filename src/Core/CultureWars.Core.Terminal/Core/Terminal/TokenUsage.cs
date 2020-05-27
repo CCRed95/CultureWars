@@ -5,8 +5,8 @@ namespace CultureWars.Core.Terminal
 {
 	public class TokenUsage<TToken>
 		: TokenUsageBase
-		where TToken
-		: TokenBase
+			where TToken
+				: TokenBase
 	{
 		protected readonly TToken _token;
 
@@ -30,8 +30,8 @@ namespace CultureWars.Core.Terminal
 		public TokenUsage(
 			ITextRangePointer textPointer,
 			TToken token) 
-			: base(
-				textPointer)
+				: base(
+					textPointer)
 		{
 			_token = token;
 		}

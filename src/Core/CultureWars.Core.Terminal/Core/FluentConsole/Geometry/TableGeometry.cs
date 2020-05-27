@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Ccr.Std.Core.Extensions.NumericExtensions;
+using Ccr.Std.Core.Extensions;
 using static CultureWars.Core.FluentConsole.ExtendedConsole;
 
 namespace CultureWars.Core.FluentConsole.Geometry
@@ -42,7 +42,7 @@ namespace CultureWars.Core.FluentConsole.Geometry
 				return (left: columnOffset, width: effectiveColumnWidth);
 			}
 
-			var currentTop = console.CursorTop;
+			var currentTop = XConsole.CursorTop;
 
 			for (var i = 0; i < cellCount; i++)
 			{

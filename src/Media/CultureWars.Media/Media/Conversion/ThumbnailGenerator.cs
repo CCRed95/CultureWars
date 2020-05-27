@@ -32,7 +32,7 @@ namespace CultureWars.Media.Conversion
 			var command =
 				$"-i {sourceVideoFile.FullName.Quote()} " +
 				$"-vf fps={fps} " +
-				$@"""{targetVideoThumbnailFolder.FullName}\%06d.jpg"""; 
+				$@"""{targetVideoThumbnailFolder.FullName}\%06d.jpg""";
 
 			Console.WriteLine($"exc: {command}");
 			//	return new FileInfo[]{};

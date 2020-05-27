@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using CultureWars.API.CultureWars;
+using CultureWars.API.CultureWars.Extensions;
 using CultureWars.API.GoogleArchives.JsonParsing;
 using CultureWars.API.InternetArchive;
 using CultureWars.API.InternetArchive.Domain;
@@ -12,11 +14,9 @@ using CultureWars.API.InternetArchive.Query;
 using CultureWars.API.Web;
 using CultureWars.Data.Export.WordPress;
 using CultureWars.Data.Export.WordPress.Domain;
-using CultureWars.Data.Export.WordPress.Domain.ValueEnums;
 using CultureWars.Data.Export.WordPress.XmlWriter;
-using CultureWars.Data.WordPress.Context;
-using CultureWars.Data.WordPress.Domain;
 using CultureWars.Terminal.Utilities;
+using static CultureWars.Core.FluentConsole.ExtendedConsole;
 
 namespace CultureWars.Terminal
 {
@@ -30,22 +30,22 @@ namespace CultureWars.Terminal
 			var archiveApi = new InternetArchiveAPI();
 
 			var queryBuilder = InternetArchiveQueryBuilder
-			                   .Builder
-			                   .WithUploader("Dr. E. Michael Jones")
-			                   .WithSort(
-				                   IAQueryFields.Title,
-				                   IASortDirection.Ascending)
-			                   .WithFields(
-				                   IAQueryFields.Creator,
-				                   IAQueryFields.Date,
-				                   IAQueryFields.Description,
-				                   IAQueryFields.Identifier,
-				                   IAQueryFields.MediaType,
-				                   IAQueryFields.Title)
-			                   .WithRows(5000)
-			                   .WithOutputKind(APIDataOutputKind.JSON)
-			                   .WithCallback("callback")
-			                   .WithShouldSave(true);
+				.Builder
+				.WithUploader("Dr. E. Michael Jones")
+				.WithSort(
+					IAQueryFields.Title,
+					IASortDirection.Ascending)
+				.WithFields(
+					IAQueryFields.Creator,
+					IAQueryFields.Date,
+					IAQueryFields.Description,
+					IAQueryFields.Identifier,
+					IAQueryFields.MediaType,
+					IAQueryFields.Title)
+				.WithRows(5000)
+				.WithOutputKind(APIDataOutputKind.JSON)
+				.WithCallback("callback")
+				.WithShouldSave(true);
 
 			var index = addedTags.Count;
 
@@ -72,7 +72,7 @@ namespace CultureWars.Terminal
 					{
 						foreach (var tagText in flattenedMetadata.TagList)
 						{
-							var wpTerm= new WPTerm(index, tagText);
+							var wpTerm = new WPTerm(index, tagText);
 
 							var existing = addedTags.Any(t => t.TagFriendlyName == wpTerm.TagFriendlyName);
 							var existingCsharpID = addedTags.Any(t => t.TagName == wpTerm.TagName);
@@ -94,6 +94,89 @@ namespace CultureWars.Terminal
 					}
 				}
 			}
+		}
+	}
+
+	public partial class CultureWarsTerminal
+	{
+		public static void QueryCultureWarsArticles()
+		{
+			var volumes = CultureWarsAPI.QueryVolumes();
+
+			//Console.WriteLine($"Querying CultureWars Articles");
+			//onsole.WriteLine($"======================================");
+
+			XConsole.BeginWriteXmlElement("CultureWarsArchive")
+				.EndWriteComplexXmlElement();
+
+			XConsole.Indent();
+
+			foreach (var volume in volumes)
+			{
+				XConsole
+					.BeginWriteXmlElement("Volume")
+					.WriteXmlInlineParameter("VolumeNumber", volume.VolumeNumber.ToString())
+					.WriteXmlInlineParameter("Year", volume.Year.ToString())
+					.EndWriteComplexXmlElement();
+
+				//Console.WriteLine($"<Volume Vol=\"{volume.VolumeNumber}\" Year=\"{volume.Year}\">");
+
+				XConsole.Indent();
+
+				foreach (var issue in volume.GetVolumeIssues())
+				{
+					XConsole
+						.BeginWriteXmlElement("Issue")
+						.WriteXmlInlineParameter("VolumeNumber", issue.VolumeNumber.ToString())
+						.WriteXmlInlineParameter("IssueNumber", issue.IssueNumber.ToString())
+						.WriteXmlInlineParameter("Url", issue.IssuePageAbsoluteUrl)
+						.EndWriteComplexXmlElement();
+
+					//Console.WriteLine($"  <Issue " +
+					//	$"Vol=\"{issue.VolumeNumber}\" " +
+					//	$"Issue=\"{issue.IssueNumber}\" " +
+					//	$"VolumeNumber=\"{issue.VolumeNumber}\" " +
+					//	$"Magazine={issue.Magazine.MagazineName.Quote()} " +
+					//	$"IssuePageAbsoluteUrl={issue.IssuePageAbsoluteUrl.Quote()}>");
+
+					XConsole.Indent();
+
+					foreach (var article in issue.GetIssueArticles())
+					{
+						XConsole
+							.BeginWriteXmlElement("Article")
+							.WriteXmlInlineParameter(
+								"Name", 
+								article
+									.ArticleName
+									.Replace("&", "&amp;")
+									.Replace("\"", ""))
+							.WriteXmlInlineParameter("Author", article.AuthorName)
+							.WriteXmlInlineParameter("Category", article.CategoryName)
+							.EndWriteXmlElement();
+
+						//Console.WriteLine($"    <Article " +
+						//	$"Vol={article.ArticleName.Quote()} " +
+						//	$"Author={article.AuthorName.Quote()} " +
+						//	$"CategoryName={article.CategoryName.Quote()}/>");
+					}
+
+					XConsole
+						.Outdent()
+						.WriteEndComplexXmlElement("Issue");
+
+					//Console.WriteLine($"  </Issue>");
+				}
+				XConsole
+					.Outdent()
+					.WriteEndComplexXmlElement("Volume");
+
+				//Console.WriteLine($"</Volume>");
+				//Console.WriteLine($"======================================");
+			}
+			XConsole
+				.Outdent()
+				.WriteEndComplexXmlElement("CultureWarsArchive");
 		}
 	}
 
@@ -121,7 +204,7 @@ namespace CultureWars.Terminal
 			//	.Builder
 			//	.WithCommand(
 			//		t => t.WithName("minify-thumb")
-			//		      .HasOption(t => t.))
+			//					.HasOption(t => t.))
 
 			Console.WriteLine("culturewars terminal");
 
@@ -137,11 +220,13 @@ namespace CultureWars.Terminal
 				{
 
 				}
-
+				if (c == "cw-articles")
+				{
+					QueryCultureWarsArticles();
+				}
 				if (c == "gen-cs-terms")
 				{
 					GenerateCSTagDeclarationsFromXml();
-
 				}
 				if (c == "minify-thumb")
 				{
@@ -263,15 +348,15 @@ namespace CultureWars.Terminal
 					var writer = new XmlStreamWriter(consoleStreamWriter);
 
 					writer.WithDeclaration(FXDeclaration.Get(_xmlVersion, "utf-8"))
-					      .WithNamespace(excerptNs)
-					      .WithNamespace(contentNs)
-					      .WithNamespace(wfwNs)
-					      .WithNamespace(dcNs)
-					      .WithNamespace(wpNs);
+						.WithNamespace(excerptNs)
+						.WithNamespace(contentNs)
+						.WithNamespace(wfwNs)
+						.WithNamespace(dcNs)
+						.WithNamespace(wpNs);
 
 					writer.WriteStartElement("rss")
-					      .WriteStartElement("channel")
-					      .WriteInlineElement(wpNs, "wxr_version", $"{_wxrVersion:0.0}");
+						.WriteStartElement("channel")
+						.WriteInlineElement(wpNs, "wxr_version", $"{_wxrVersion:0.0}");
 
 					foreach (var term in WPTerm.AllTags)
 					{
@@ -279,7 +364,7 @@ namespace CultureWars.Terminal
 					}
 
 					writer.WriteEndElement()
-					      .WriteEndElement();
+						.WriteEndElement();
 
 					Console.WriteLine($"Generation complete.");
 				}
@@ -459,15 +544,15 @@ namespace CultureWars.Terminal
 					var writer = new XmlStreamWriter(consoleStreamWriter);
 
 					writer.WithDeclaration(FXDeclaration.Get(_xmlVersion, "utf-8"))
-								.WithNamespace(excerptNs)
-								.WithNamespace(contentNs)
-								.WithNamespace(wfwNs)
-								.WithNamespace(dcNs)
-								.WithNamespace(wpNs);
+						.WithNamespace(excerptNs)
+						.WithNamespace(contentNs)
+						.WithNamespace(wfwNs)
+						.WithNamespace(dcNs)
+						.WithNamespace(wpNs);
 
 					writer.WriteStartElement("rss")
-								.WriteStartElement("channel")
-								.WriteInlineElement(wpNs, "wxr_version", $"{_wxrVersion:0.0}");
+						.WriteStartElement("channel")
+						.WriteInlineElement(wpNs, "wxr_version", $"{_wxrVersion:0.0}");
 
 					foreach (var item in GetWPPosts())
 					{
@@ -476,35 +561,32 @@ namespace CultureWars.Terminal
 						var gmtPostDateStr = item.PostDateGMT.ToString("yyyy-MM-dd HH:mm:ss");
 
 						writer.WriteStartElement("item")
-									.WriteInlineElement("title", item.PostTitle)
-									.WriteInlineElement("link", item.PostLink)
-									.WriteInlineCDataElement(contentNs, "encoded", item.PostContent)
-									.WriteInlineCDataElement(excerptNs, "encoded", item.PostExcerpt)
-									.WriteInlineElement(wpNs, "post_name", item.PostName)
-									.WriteInlineElement(wpNs, "post_type", item.PostType)
-									.WriteInlineElement(wpNs, "post_id", item.PostID.ToString())
-									.WriteInlineElement(wpNs, "status", item.PostStatus.StatusName)
-									.WriteInlineElement("pubdate", pubDateStr)
-									.WriteInlineElement(wpNs, "post_date", postDateStr)
-									.WriteInlineElement(wpNs, "post_date_gmt", gmtPostDateStr)
-									.WriteInlineElement(dcNs, "creator", item.Author.Login)
-									.WriteInlineElement(wpNs, "comment_status", "open");
+							.WriteInlineElement("title", item.PostTitle)
+							.WriteInlineElement("link", item.PostLink)
+							.WriteInlineCDataElement(contentNs, "encoded", item.PostContent)
+							.WriteInlineCDataElement(excerptNs, "encoded", item.PostExcerpt)
+							.WriteInlineElement(wpNs, "post_name", item.PostName)
+							.WriteInlineElement(wpNs, "post_type", item.PostType)
+							.WriteInlineElement(wpNs, "post_id", item.PostID.ToString())
+							.WriteInlineElement(wpNs, "status", item.PostStatus.StatusName)
+							.WriteInlineElement("pubdate", pubDateStr)
+							.WriteInlineElement(wpNs, "post_date", postDateStr)
+							.WriteInlineElement(wpNs, "post_date_gmt", gmtPostDateStr)
+							.WriteInlineElement(dcNs, "creator", item.Author.Login)
+							.WriteInlineElement(wpNs, "comment_status", "open");
 
 						foreach (var category in item.Categories)
 						{
 							writer.WriteStartElement(wpNs, "category")
-										.WriteInlineCDataElement(wpNs, "cat_name", category.CategoryName)
-										.WriteInlineCDataElement(wpNs, "category_nicename", category.CategoryNiceName)
-										.WriteInlineElement(wpNs, "category_parent", "0")
-										.WriteEndElement();
-
+								.WriteInlineCDataElement(wpNs, "cat_name", category.CategoryName)
+								.WriteInlineCDataElement(wpNs, "category_nicename", category.CategoryNiceName)
+								.WriteInlineElement(wpNs, "category_parent", "0")
+								.WriteEndElement();
 						}
-
 						writer.WriteEndElement();
 					}
-
 					writer.WriteEndElement()
-								.WriteEndElement();
+						.WriteEndElement();
 				}
 
 				if (c == "query-archive")
@@ -531,6 +613,7 @@ namespace CultureWars.Terminal
 					foreach (var archiveItem in archiveApi.Query(queryBuilder))
 					{
 						Console.WriteLine($"Archive Item - Identifier: {archiveItem.Identifier}");
+
 						foreach (var file in archiveItem.GetItemFiles())
 						{
 							Console.WriteLine(
@@ -560,4 +643,3 @@ namespace CultureWars.Terminal
 		}
 	}
 }
-

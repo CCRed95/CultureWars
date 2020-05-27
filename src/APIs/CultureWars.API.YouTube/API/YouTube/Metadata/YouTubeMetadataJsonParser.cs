@@ -2,7 +2,6 @@
 
 namespace CultureWars.API.YouTube.Metadata
 {
-	
 	public class ClosedCaptionSegment
 	{
 		public TimeSpan TimeStamp { get; set; }

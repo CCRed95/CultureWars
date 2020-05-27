@@ -1,4 +1,4 @@
-﻿namespace CultureWars.Data.Extensions
+﻿namespace CultureWars.Core.Data.Extensions
 {
 	public enum IdentityGeneratorState
 	{

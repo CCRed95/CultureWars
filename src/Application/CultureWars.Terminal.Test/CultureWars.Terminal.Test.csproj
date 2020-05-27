@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\CultureWars.Core.Terminal\CultureWars.Core.Terminal.csproj" />
+    <ProjectReference Include="..\..\Core\CultureWars.Core\CultureWars.Core.csproj" />
+  </ItemGroup>
+
+</Project>

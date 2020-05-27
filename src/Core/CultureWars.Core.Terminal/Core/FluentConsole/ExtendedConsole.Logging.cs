@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using CultureWars.Core.FluentConsole.Geometry;
 
 namespace CultureWars.Core.FluentConsole

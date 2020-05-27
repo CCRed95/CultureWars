@@ -71,10 +71,10 @@ namespace CultureWars.Core.FluentConsole.Geometry
 			}
 			var position = getConsoleAlignment(alignment);
 
-			ExtendedConsole.console.CursorTop = position.top;
-			ExtendedConsole.console.CursorLeft = position.left;
+			ExtendedConsole.XConsole.CursorTop = position.top;
+			ExtendedConsole.XConsole.CursorLeft = position.left;
 
-			return ExtendedConsole.console.Write(content, color);
+			return ExtendedConsole.XConsole.Write(content, color);
 		}
 	}
 }

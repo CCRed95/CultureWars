@@ -7,28 +7,27 @@ using CultureWars.Core.FluentConsole.Extensions;
 namespace CultureWars.Core.FluentConsole.Patterning.Complex
 {
 	/// <summary>
-	/// Exposes methods and properties used for alternating over a set of colors according to
-	/// the occurrences of patterns.
+	/// Exposes methods and properties used for alternating over a set of colors according to the
+	/// occurrences of patterns.
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
 	public sealed class PatternBasedColorAlternator
 		: ColorAlternator,
 			IPrototypable<PatternBasedColorAlternator>
 	{
 		private readonly TextPatternCollection _patternMatcher;
-		private bool isFirstRun = true;
+		private bool _isFirstRun = true;
 
 
 		/// <summary>
-		///		Exposes methods and properties used for alternating over a set of colors according to
-		///		the occurrences of patterns.
+		///	Exposes methods and properties used for alternating over a set of colors according to	the
+		/// occurrences of patterns.
 		/// </summary>
 		/// <param name="patternMatcher">
-		///		The PatternMatcher instance which will dictate what will need to happen in order for the
-		///		color to alternate.
+		///	The PatternMatcher instance which will dictate what will need to happen in order for the
+		///	color to alternate.
 		/// </param>
 		/// <param name="colors">
-		///		The set of colors over which to alternate.
+		///	The set of colors over which to alternate.
 		/// </param>
 		public PatternBasedColorAlternator(
 			TextPatternCollection patternMatcher,
@@ -53,13 +52,13 @@ namespace CultureWars.Core.FluentConsole.Patterning.Complex
 		}
 
 		/// <summary>
-		///		Alternates colors based on patterns matched in the input string.
+		///	Alternates colors based on patterns matched in the input string.
 		/// </summary>
 		/// <param name="input">
-		///		The string to be styled.
+		///	The string to be styled.
 		/// </param>
 		/// <returns>
-		///		The current color of the ColorAlternator.
+		///	The current color of the ColorAlternator.
 		/// </returns>
 		public override Color GetNextColor(
 			string input)
@@ -68,25 +67,25 @@ namespace CultureWars.Core.FluentConsole.Patterning.Complex
 				throw new InvalidOperationException(
 					"No colors have been supplied over which to alternate!");
 			
-			if (isFirstRun)
+			if (_isFirstRun)
 			{
-				isFirstRun = false;
-				return Colors[nextColorIndex];
+				_isFirstRun = false;
+				return Colors[_nextColorIndex];
 			}
 			if (_patternMatcher.HasAnyMatches(input))
 			{
 				TryIncrementColorIndex();
 			}
-			var nextColor = Colors[nextColorIndex];
+			var nextColor = Colors[_nextColorIndex];
 			return nextColor;
 		}
 
 		protected override void TryIncrementColorIndex()
 		{
-			if (nextColorIndex >= Colors.Length - 1)
-				nextColorIndex = 0;
+			if (_nextColorIndex >= Colors.Length - 1)
+				_nextColorIndex = 0;
 			else
-				nextColorIndex++;
+				_nextColorIndex++;
 		}
 	}
 }

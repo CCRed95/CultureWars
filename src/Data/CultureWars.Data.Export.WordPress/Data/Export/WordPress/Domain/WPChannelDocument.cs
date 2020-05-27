@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ccr.Std.Core.Extensions;
 using CultureWars.Core.Extensions;
 using static CultureWars.Data.Export.WordPress.Domain.WPXmlns;
 using CultureWars.Data.Export.WordPress.Domain.Infrastructure;

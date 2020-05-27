@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CultureWars.Data.Extensions
+namespace CultureWars.Core.Data.Extensions
 {
   public static class PropertyBuilderExtensions
   {

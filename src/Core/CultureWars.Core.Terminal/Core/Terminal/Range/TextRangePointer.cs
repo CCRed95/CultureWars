@@ -26,7 +26,8 @@
 
 		public string LiteralText
 		{
-			get => _literalText ??= _textSource.Substring((int)_startIndex, (int) _length);
+			get => _literalText ??= _textSource
+				.Substring((int)_startIndex, (int) _length);
 		}
 
 

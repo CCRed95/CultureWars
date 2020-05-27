@@ -9,12 +9,15 @@ namespace CultureWars.Core.FluentConsole
 	{
 		private readonly SemaphoreSlim _semaphore;
 
+
 		public TaskQueue()
 		{
 			_semaphore = new SemaphoreSlim(1);
 		}
 
-		public async Task<T> Enqueue<T>(Func<Task<T>> taskGenerator)
+
+		public async Task<T> Enqueue<T>(
+			Func<Task<T>> taskGenerator)
 		{
 			await _semaphore.WaitAsync();
 			try

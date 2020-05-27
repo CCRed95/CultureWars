@@ -8,28 +8,29 @@ namespace CultureWars.Core.FluentConsole.Colorization
 	public abstract class ColorAlternator
 		: IPrototypable<ColorAlternator>
 	{
+		protected int _nextColorIndex = 0;
+
+
 		/// <summary>
 		/// The set of colors over which to alternate.
 		/// </summary>
 		public Color[] Colors { get; set; }
 
-		protected int nextColorIndex = 0;
 
 
 		/// <summary>
 		/// Exposes methods and properties used for alternating over a set of colors.
 		/// </summary>
-		public ColorAlternator()
+		protected ColorAlternator()
 		{
-			Colors = new Color[]
-			{
-			};
+			Colors = new Color[] { };
 		}
 
 		/// <summary>
 		/// Exposes methods and properties used for alternating over a set of colors.
 		/// </summary>
-		public ColorAlternator(params Color[] colors)
+		protected ColorAlternator(
+			params Color[] colors)
 		{
 			Colors = colors;
 		}
@@ -45,8 +46,12 @@ namespace CultureWars.Core.FluentConsole.Colorization
 		/// <summary>
 		/// Alternates colors based on the state of the ColorAlternator instance.
 		/// </summary>
-		/// <param name="input">The string to be styled.</param>
-		/// <returns>The current color of the ColorAlternator.</returns>
+		/// <param name="input">
+		/// The string to be styled.
+		/// </param>
+		/// <returns>
+		/// The current color of the ColorAlternator.
+		/// </returns>
 		public abstract Color GetNextColor(string input);
 
 		protected abstract void TryIncrementColorIndex();

@@ -40,7 +40,8 @@ namespace CultureWars.Core.FluentConsole.Colorization.Factories
 				isInCompatibilityMode);
 		}
 
-		private ColorMapper GetColorMapperSafe(bool isWindows)
+		private ColorMapper GetColorMapperSafe(
+			bool isWindows)
 		{
 			return isWindows ? new ColorMapper() : null;
 		}

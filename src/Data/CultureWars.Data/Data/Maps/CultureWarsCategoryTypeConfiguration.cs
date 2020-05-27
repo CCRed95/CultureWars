@@ -26,7 +26,7 @@ namespace CultureWars.Data.Maps
 	//			.HasMaxLength(100);
 
 	//		builder.Property(t => t.CategoryParent)
-	//			.IsRequired(false)
+	//			.IsRequired(false)hahaha
 	//			.HasMaxLength(100);
 	//	}
 	//}

@@ -1,9 +1,6 @@
 ﻿using Google.Cloud.Speech.V1;
 using System;
-using System.IO;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using Google.Protobuf;
 using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;

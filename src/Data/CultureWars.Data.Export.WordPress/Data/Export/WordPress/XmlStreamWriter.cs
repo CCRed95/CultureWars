@@ -86,14 +86,14 @@ namespace CultureWars.Data.Export.WordPress
 		}
 
 
-		/// <inheritdoc />
-		public override void WriteLine(ReadOnlySpan<char> buffer)
-		{
-			base.WriteLine(buffer);
-			Console.ForegroundColor = ConsoleColor.Cyan;
-			Console.WriteLine(buffer.ToString());
-			Console.ForegroundColor = ConsoleColor.White;
-		}
+		///// <inheritdoc />
+		//public override void WriteLine(ReadOnlySpan<char> buffer)
+		//{
+		//	base.WriteLine(buffer);
+		//	Console.ForegroundColor = ConsoleColor.Cyan;
+		//	Console.WriteLine(buffer.ToString());
+		//	Console.ForegroundColor = ConsoleColor.White;
+		//}
 
 		/// <inheritdoc />
 		public override void WriteLine(string value)
@@ -706,7 +706,7 @@ namespace CultureWars.Data.Export.WordPress
 		{
 			if (null != text && (text.IndexOf("--", StringComparison.Ordinal) >= 0
 					|| text.Length != 0
-					&& text[^1] == '-'))
+					&& text[1] == '-')) // ^1 before
 				throw new ArgumentException(
 					$"Invalid Xml Comment text argument {text.Quote()}.");
 

@@ -42,7 +42,7 @@ namespace CultureWars.Core.FluentConsole
 
 		/// <inheritdoc cref="System.Console.SetCursorPosition(int,int)"/>
 		/// <summary>
-		///		Fluent API call to set the cursor position.
+		/// Fluent API call to set the cursor position.
 		/// </summary>
 		IExtendedConsoleSession SetCursorPosition(
 			int left,
@@ -59,7 +59,7 @@ namespace CultureWars.Core.FluentConsole
 
 		/// <inheritdoc cref="Console.MoveBufferArea(int,int,int,int,int,int)"/>
 		/// <summary>
-		///		Fluent API call to move the buffer.
+		///	Fluent API call to move the buffer.
 		/// </summary>
 		IExtendedConsoleSession MoveBufferArea(
 			int sourceLeft,
@@ -71,7 +71,7 @@ namespace CultureWars.Core.FluentConsole
 
 		/// <inheritdoc cref="Console.MoveBufferArea(int,int,int,int,int,int,char,ConsoleColor,ConsoleColor)"/>
 		/// <summary>
-		///		Fluent API call to move the buffer.
+		///	Fluent API call to move the buffer.
 		/// </summary>
 		IExtendedConsoleSession MoveBufferArea(
 			int sourceLeft,
@@ -86,7 +86,7 @@ namespace CultureWars.Core.FluentConsole
 
 		/// <inheritdoc cref="Console.SetBufferSize(int,int)"/>
 		/// <summary>
-		///		Fluent API call to set the buffer size.
+		///	Fluent API call to set the buffer size.
 		/// </summary>
 		IExtendedConsoleSession SetBufferSize(
 			int width,
@@ -208,119 +208,127 @@ namespace CultureWars.Core.FluentConsole
 
 		/// <inheritdoc cref="Console.Beep(int,int)"/>
 		/// <summary>
-		///		Fluent API call to trigger a console beep.
+		///	Fluent API call to trigger a console beep.
 		/// </summary>
 		IExtendedConsoleSession Beep(int frequency, int duration);
 
 		/// <inheritdoc cref="Console.Clear()"/>
 		/// <summary>
-		///		Fluent API call to trigger a console beep.
+		///	Fluent API call to trigger a console beep.
 		/// </summary>
 		IExtendedConsoleSession Clear();
 	}
 
 	public interface IExtendedConsoleCodeWriter
 	{
-		/// <summary>
-		///		Writes a number as a <see cref="string"/> to the console.
-		/// </summary>
-		/// <param name="number">
-		///		The number, as a <see cref="string"/>.
-		///	</param>
-		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
-		/// </returns>
-		IExtendedConsoleSession WriteNumber(string number);
+		IExtendedConsoleSession WriteCode(
+			string lexeme,
+			ComplexCodeKind complexCodeKind);
+
+		IExtendedConsoleSession WriteCode(
+			string lexeme,
+			CodeKind codeKind);
+		
+			/// <summary>
+			///	Writes a number as a <see cref="string"/> to the console.
+			/// </summary>
+			/// <param name="number">
+			///	The number, as a <see cref="string"/>.
+			///	</param>
+			/// <returns>
+			///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+			/// </returns>
+			IExtendedConsoleSession WriteNumber(string number);
 
 		/// <summary>
-		///		Writes a <see cref="Type"/> to the console.
+		///	Writes a <see cref="Type"/> to the console.
 		/// </summary>
 		/// <param name="type">
-		///		The <see cref="Type"/> to write to the console.
+		///	The <see cref="Type"/> to write to the console.
 		///	</param>
 		/// <param name="fullyQualified">
-		///		Optional <see cref="bool"/> parameter indicating whether or not the type should be
-		///		represented in a fully-qualified format.
+		///	Optional <see cref="bool"/> parameter indicating whether or not the type should be
+		///	represented in a fully-qualified format.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteType(Type type, bool fullyQualified = false);
 
 		/// <summary>
-		///		Writes a <see cref="MethodInfo"/> to the console.
+		///	Writes a <see cref="MethodInfo"/> to the console.
 		/// </summary>
 		/// <param name="methodInfo">
-		///		The <see cref="MethodInfo"/> to write to the console.
+		///	The <see cref="MethodInfo"/> to write to the console.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteMethod(MethodInfo methodInfo);
 
 		/// <summary>
-		///		Writes a <see cref="FieldInfo"/> to the console.
+		///	Writes a <see cref="FieldInfo"/> to the console.
 		/// </summary>
 		/// <param name="fieldInfo">
-		///		The <see cref="FieldInfo"/> to write to the console.
+		///	The <see cref="FieldInfo"/> to write to the console.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteField(FieldInfo fieldInfo);
 
 		/// <summary>
-		///		Writes a <see cref="PropertyInfo"/> to the console.
+		///	Writes a <see cref="PropertyInfo"/> to the console.
 		/// </summary>
 		/// <param name="propertyInfo">
-		///		The <see cref="PropertyInfo"/> to write to the console.
+		///	The <see cref="PropertyInfo"/> to write to the console.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteProperty(PropertyInfo propertyInfo);
 
 		/// <summary>
-		///		Writes a <see cref="Attribute"/> to the console.
+		///	Writes a <see cref="Attribute"/> to the console.
 		/// </summary>
-		/// <param name="attribute">
-		///		The <see cref="Attribute"/> to write to the console.
-		///	</param>
+		/// <typeparam name="TAttribute">
+		///	The <see cref="Attribute"/> to write to the console.
+		/// </typeparam>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
-		IExtendedConsoleSession WriteAttribute(Attribute attribute);
+		IExtendedConsoleSession WriteAttribute<TAttribute>(params object[] ctorParameters);
 
 		/// <summary>
-		///		Writes a <see cref="ConstructorInfo"/> to the console.
+		///	Writes a <see cref="ConstructorInfo"/> to the console.
 		/// </summary>
 		/// <param name="constructorInfo">
-		///		The <see cref="ConstructorInfo"/> to write to the console.
+		///	The <see cref="ConstructorInfo"/> to write to the console.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteConstructor(ConstructorInfo constructorInfo);
 
 		/// <summary>
-		///		Writes a <see cref="EventInfo"/> to the console.
+		///	Writes a <see cref="EventInfo"/> to the console.
 		/// </summary>
 		/// <param name="eventInfo">
-		///		The <see cref="EventInfo"/> to write to the console.
+		///	The <see cref="EventInfo"/> to write to the console.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteEvent(EventInfo eventInfo);
 
 		/// <summary>
-		///		Writes a <see cref="ParameterInfo"/> to the console.
+		///	Writes a <see cref="ParameterInfo"/> to the console.
 		/// </summary>
 		/// <param name="parameterInfo">
-		///		The <see cref="ParameterInfo"/> to write to the console.
+		///	The <see cref="ParameterInfo"/> to write to the console.
 		///	</param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession WriteParameter(ParameterInfo parameterInfo);
 	}
@@ -394,6 +402,13 @@ namespace CultureWars.Core.FluentConsole
 			//IExtendedConsoleLog,
 			IExtendedConsoleTableWriter
 	{
+		IExtendedConsoleSession BeginWriteXmlElement(string elementName);
+		IExtendedConsoleSession WriteXmlInlineParameter(string parameter, string value);
+		IExtendedConsoleSession EndWriteXmlElement();
+		IExtendedConsoleSession EndWriteComplexXmlElement();
+		IExtendedConsoleSession WriteEndComplexXmlElement(string elementName);
+
+		
 		IExtendedConsoleSession ReplaceAllColorsWithDefaults();
 		IExtendedConsoleSession ReplaceColor(Color oldColor, Color newColor);
 		IExtendedConsoleSession ResetColor();
@@ -409,263 +424,263 @@ namespace CultureWars.Core.FluentConsole
 
 
 		/// <summary>
-		///		Writes the provided <see cref="bool"/> <paramref name="value"/> parameter to the Console,
-		///		without any colorization or stylization.
+		///	Writes the provided <see cref="bool"/> <paramref name="value"/> parameter to the Console,
+		///	without any colorization or stylization.
 		/// </summary>
 		/// <param name="value">
-		///		A <see cref="bool"/> value to write to the console.
+		///	A <see cref="bool"/> value to write to the console.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(bool value);
 
 		/// <inheritdoc cref="Console.Write(char)"/>
 		/// <summary>
-		///		Writes the provided <see cref="char"/> <paramref name="value"/> parameter to the Console,
-		///		without any colorization or stylization.
+		///	Writes the provided <see cref="char"/> <paramref name="value"/> parameter to the Console,
+		///	without any colorization or stylization.
 		/// </summary>
 		/// <param name="value">
-		///		A <see cref="char"/> value to write to the console.
+		///	A <see cref="char"/> value to write to the console.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(char value);
 
 		/// <inheritdoc cref="Console.Write(char[])"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(char[] value);
 
-		/// <inheritdoc cref="Console.Write(char[],int,int)"/>
-		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
-		/// </returns>
-		IExtendedConsoleSession Write(char[] buffer, int index, int count);
+		///// <inheritdoc cref="Console.Write(char[],int,int)"/>
+		///// <returns>
+		/////	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///// </returns>
+		//IExtendedConsoleSession Write(char[] buffer, int index, int count);
 
 		/// <inheritdoc cref="Console.Write(decimal)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(decimal value);
 
 		/// <inheritdoc cref="Console.Write(double)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(double value);
 
 		/// <inheritdoc cref="Console.Write(float)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(float value);
 
 		/// <inheritdoc cref="Console.Write(int)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(int value);
 
 		/// <inheritdoc cref="Console.Write(long)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(long value);
 
 		/// <inheritdoc cref="Console.Write(object)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(object value);
 
 		/// <inheritdoc cref="Console.Write(string)"/>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(string value);
 
 		/// <inheritdoc cref="Console.Write(bool)"/>
 		/// <summary>
-		///		Writes the specified <see cref="bool"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="bool"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(bool value, Color color);
 
 		/// <inheritdoc cref="Console.Write(char)"/>
 		/// <summary>
-		///		Writes the specified <see cref="char"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="char"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(char value, Color color);
 
 		/// <inheritdoc cref="Console.Write(char[])"/>
 		/// <summary>
-		///		Writes the specified <see cref="T:char[]"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="T:char[]"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(char[] value, Color color);
 
 		/// <inheritdoc cref="Console.Write(char[],int,int)"/>
 		/// <summary>
-		///		Writes the specified subarray of Unicode character value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified subarray of Unicode character value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="buffer">
-		///		An array of Unicode characters.
+		///	An array of Unicode characters.
 		/// </param>
 		/// <param name="index">
-		///		The starting position in <paramref name="buffer"/>.
+		///	The starting position in <paramref name="buffer"/>.
 		/// </param>
 		/// <param name="count">
-		///		The number of characters to write.
+		///	The number of characters to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(char[] buffer, int index, int count, Color color);
 
 		/// <inheritdoc cref="Console.Write(decimal)"/>
 		/// <summary>
-		///		Writes the specified <see cref="decimal"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="decimal"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(decimal value, Color color);
 
 		/// <inheritdoc cref="Console.Write(double)"/>
 		/// <summary>
-		///		Writes the specified <see cref="double"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="double"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(double value, Color color);
 
 		/// <inheritdoc cref="Console.Write(float)"/>
 		/// <summary>
-		///		Writes the specified <see cref="float"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="float"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(float value, Color color);
 
 		/// <inheritdoc cref="Console.Write(int)"/>
 		/// <summary>
-		///		Writes the specified <see cref="int"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="int"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(int value, Color color);
 
 		/// <inheritdoc cref="Console.Write(long)"/>
 		/// <summary>
-		///		Writes the specified <see cref="long"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="long"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(long value, Color color);
 
 		/// <inheritdoc cref="Console.Write(object)"/>
 		/// <summary>
-		///		Writes the specified <see cref="object"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="object"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(object value, Color color);
 
 		/// <inheritdoc cref="Console.Write(string)"/>
 		/// <summary>
-		///		Writes the specified <see cref="string"/> value to the standard output stream in the
-		///		specified <see cref="Color"/>.
+		///	Writes the specified <see cref="string"/> value to the standard output stream in the
+		///	specified <see cref="Color"/>.
 		/// </summary>
 		/// <param name="value">
-		///		The value to write.
+		///	The value to write.
 		/// </param>
 		/// <param name="color">
-		///		The <see cref="Color"/> foreground in which to write in.
+		///	The <see cref="Color"/> foreground in which to write in.
 		/// </param>
 		/// <returns>
-		///		Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
+		///	Returns a <see cref="IExtendedConsoleSession"/> instance for fluent, chained calls.
 		/// </returns>
 		IExtendedConsoleSession Write(string value, Color color);
 

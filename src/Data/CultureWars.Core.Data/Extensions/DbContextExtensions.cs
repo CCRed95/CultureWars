@@ -12,7 +12,7 @@ using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace CultureWars.Data.Extensions
+namespace CultureWars.Core.Data.Extensions
 {
   public static class DbContextExtensions
   {
